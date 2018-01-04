@@ -41,3 +41,4 @@ Your app should be able to complete the following tasks:
 * Test your code using Jest
 * Include animations
 * Include tags
+* Use [FLow](https://flow.org)
