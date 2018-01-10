@@ -1,0 +1,43 @@
+{
+  "name": "DesafioReactNative",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "jest-cli": "^22.0.5",
+    "react": "16.0.0",
+    "react-dom": "^16.2.0",
+    "react-native": "0.51.0",
+    "react-native-calendars": "^1.16.1",
+    "react-native-popup-menu": "^0.12.1",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "22.0.4",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react-native": "4.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-matchers": "^4.0.2",
+    "enzyme-to-json": "^3.3.0",
+    "flow-bin": "^0.62.0",
+    "jest": "^22.0.4",
+    "jest-enzyme": "^4.0.2",
+    "jest-serializer-enzyme": "^1.0.0",
+    "jest-styled-components": "^4.9.0",
+    "react-addons-test-utils": "^15.6.2",
+    "react-native-mock": "^0.3.1",
+    "react-test-renderer": "^16.2.0"
+  },
+  "jest": {
+    "preset": "react-native",
+    "snapshotSerializers": [
+      "./node_modules/jest-serializer-enzyme"
+    ]
+  }
+}
