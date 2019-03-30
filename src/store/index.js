@@ -1,23 +1,28 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import reducer from './reducers/todoList';
-// import { rootReducer } from './reducers';
-// import { persistStore, persistReducer } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
-// import { AsyncStorage } from 'react-native';
+import { createLogger } from 'redux-logger';
+import { persistStore, persistReducer } from 'redux-persist';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { AsyncStorage } from 'react-native';
 
-// const persistConfig = {
-//     key: 'root',
-//     storage,
-// };
+// change this key, change this proccess
+const persistConfig = {
+    key: 'root11',
+    storage: AsyncStorage,
+};
 
-// const persistedReducer = persistReducer(persistConfig, rootReducer);
+const middlewares = [];
 
-// export default () => {
-//     const store = createStore(persistedReducer)
-//     const persistor = persistStore(store, {storage: AsyncStorage})
-//     return { store, persistor } 
-// }
+if(__DEV__) {
+    middlewares.push(createLogger());
+}
 
-const store = createStore(reducer);
+const persistedReducer = persistReducer(persistConfig, reducer);
 
-export default store;
+export const store = createStore(
+    persistedReducer,
+    undefined,
+    compose(applyMiddleware(...middlewares))
+);
+
+export const persistor = persistStore(store);
