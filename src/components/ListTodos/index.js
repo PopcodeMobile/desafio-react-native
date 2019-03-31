@@ -19,9 +19,14 @@ const ListTodos = ({ navigation, todos, markTodo, deleteTodo }) => {
             situation={situation} 
         />
     )
-    
+
+    const sum = (todos) => todos.reduce((total, item) => total+= 1, 0);
+    const ar = todos.filter((hero) => hero.pendding === true);
     return (
         <View style={styles.container}>
+            <View style={styles.count}>
+                <Text>{(todos.length > 0) ? (`${sum(ar)}/${todos.length}`) : (`Você não possui nenhuma tarefa`)}</Text>
+            </View>
             <FlatList
                 style={styles.flat} 
                 data={todos.filter(res => res.pendding === situation )}

@@ -5,6 +5,13 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fafafa',
     },
+    count: {
+        paddingTop: 10,
+        paddingRight: 20,
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        fontSize: 20,
+    },
     flat: {
         padding: 20,
     },

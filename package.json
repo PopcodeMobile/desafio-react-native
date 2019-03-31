@@ -20,8 +20,7 @@
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
-    "redux-persist": "^5.10.0",
-    "redux-thunk": "^2.3.0"
+    "redux-persist": "^5.10.0"
   },
   "devDependencies": {
     "@babel/core": "7.4.0",
