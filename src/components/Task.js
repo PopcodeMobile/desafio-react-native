@@ -8,7 +8,7 @@ import fonts from '../util/fonts';
 import { bindActionCreators } from 'redux';
 import * as HomeActions from '../store/actions/home';
 import { TouchableOpacity } from 'react-native';
-
+import * as Animatable from 'react-native-animatable';
 
 
 class Task extends Component {
@@ -18,7 +18,11 @@ class Task extends Component {
     render() {
         const { item, playload, handleCheck, selectedItem,editTask,deleteTask} = this.props;
         return (
-            <TaskContainer selected={playload.itemSelected == item}>
+            <TaskContainer 
+                as={Animatable.View} 
+                animation={playload.page=='done'?"fadeInRight":"fadeInLeft"}
+                selected={playload.itemSelected == item}
+            >
                 <TaskHeader>
                     <TaskHeaderButtons>
                         <TaskButton active={item.done} onPress={() => handleCheck({ item, ...playload })}>
@@ -26,7 +30,7 @@ class Task extends Component {
                         </TaskButton>
                     </TaskHeaderButtons>
 
-                    <TouchableOpacity delayLongPress={400} onLongPress={() => selectedItem(item)}>
+                    <TouchableOpacity delayLongPress={300} onLongPress={() => selectedItem(item)}>
                         <TaskTitle active={item.done}>{item.name}</TaskTitle>
                     </TouchableOpacity>
                     {playload.itemSelected == item && (

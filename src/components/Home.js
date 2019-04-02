@@ -8,6 +8,7 @@ import { Text, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as HomeActions from '../store/actions/home';
+import * as Animatable from 'react-native-animatable';
 
 
 class HomePage extends Component {
@@ -22,7 +23,11 @@ class HomePage extends Component {
     console.log("STATE COMPLETE =>  ",tasks);
   }
   renderItem = ({ item }) => (
-    <Task item={item} {...this.props} />
+    <Task as={Animatable.View}
+        animation="bounceInRight"
+        duration={1000}    
+        item={item} 
+    {...this.props} />
   );
 
   handleSearchBar = () => {
@@ -53,14 +58,23 @@ class HomePage extends Component {
 
 render() {
   const { page,  numTaskDone,handlePage, createTask, getKey} = this.props;
-  const {tasks, tasksAsDone} = this.state;
+  let {tasks, tasksAsDone,searchBarView} = this.state;
+  if(!searchBarView){
+    tasks = this.props.tasks;
+    tasksAsDone = this.props.tasksAsDone;
+  }
 
   return (
     <Root >
       <Header>
         <HeaderContainer>
           <HeaderTitle className="logotipo">Mytasks  </HeaderTitle>
-          <HeaderTitle inactive={page !== 'all'} onPress={() => handlePage('all')}>
+          <HeaderTitle 
+          as={Animatable.Text}
+          animation="fadeInLeft"
+          inactive={page !== 'all'} 
+          onPress={() => handlePage('all')}
+          >
             All tasks
           <HeaderTitle inactive={page !== 'done'} onPress={() => handlePage('done')}>  ({numTaskDone}) Done</HeaderTitle>
           </HeaderTitle>
@@ -74,9 +88,13 @@ render() {
         </HeaderContainer>
       </Header>
       {this.state.searchBarView && (
-        <SearchBar>
-          <SearchBarInput placeholder="Digite o nome" onChangeText={this.changeTextSeacherBar} />
-          
+        <SearchBar as={Animatable.View} 
+        animation="pulse"
+        duration={1000}>
+          <SearchBarInput 
+                          placeholder="Digite o nome" 
+                          onChangeText={this.changeTextSeacherBar}
+                           />
         </SearchBar>
       )}
 
