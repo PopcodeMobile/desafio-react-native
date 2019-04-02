@@ -2,13 +2,28 @@
   "name": "MyTasks",
   "version": "0.0.1",
   "private": true,
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/Roboto",
+      "./assets/fonts/Quicksand",
+      "./assets/fonts/Comfortaa"
+    ]
+  },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
   "dependencies": {
     "react": "16.6.3",
-    "react-native": "0.58.5"
+    "react-native": "0.58.5",
+    "react-native-gesture-handler": "^1.1.0",
+    "react-native-vector-icons": "^6.4.2",
+    "react-navigation": "^3.5.1",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
+    "redux-persist": "^5.10.0",
+    "redux-saga": "^1.0.2",
+    "styled-components": "^4.2.0"
   },
   "devDependencies": {
     "babel-core": "7.0.0-bridge.0",
