@@ -74,6 +74,6 @@ export default function tasks(state= INITIAL_STATE, action) {
             }
 
     }
-    return INITIAL_STATE;
+    //return INITIAL_STATE;
     return state;
 }

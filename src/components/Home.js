@@ -70,11 +70,11 @@ render() {
         <HeaderContainer>
           <HeaderTitle className="logotipo">Mytasks  </HeaderTitle>
           <HeaderTitle 
-          as={Animatable.Text}
-          animation="fadeInLeft"
-          inactive={page !== 'all'} 
-          onPress={() => handlePage('all')}
-          >
+            as={Animatable.Text}
+            animation="fadeInLeft"
+            inactive={page !== 'all'} 
+            onPress={() => handlePage('all')}
+            >
             All tasks
           <HeaderTitle inactive={page !== 'done'} onPress={() => handlePage('done')}>  ({numTaskDone}) Done</HeaderTitle>
           </HeaderTitle>
@@ -92,9 +92,9 @@ render() {
         animation="pulse"
         duration={1000}>
           <SearchBarInput 
-                          placeholder="Digite o nome" 
-                          onChangeText={this.changeTextSeacherBar}
-                           />
+              placeholder="Digite o nome" 
+              onChangeText={this.changeTextSeacherBar}
+          />
         </SearchBar>
       )}
 
@@ -135,6 +135,7 @@ const mapDispatchToProps = dispatch =>
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 
+//styles----------------------
 const Root = styled.View`
   background-color:#fff;
   flex:1;

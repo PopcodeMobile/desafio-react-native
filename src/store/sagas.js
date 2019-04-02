@@ -1,3 +1,7 @@
+
+//VERSÃO SEM O PERSIST, UTILIZANDO REDUX-SAGA
+//NÃO USADO
+
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { getNotDone, getAsDone,updateData } from '../controller/TasksController';
 

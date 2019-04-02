@@ -8,6 +8,9 @@ Filter between completed and active items
 Add a due date
 */
 
+
+///PARA FINS DE TESTE NO DESENVOLVIMENTO 
+//NÃO MAIS USADO
 export const Data = [
     {
         id:'1',
