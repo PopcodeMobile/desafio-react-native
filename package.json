@@ -1,0 +1,45 @@
+{
+  "name": "app",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "flow": "flow"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^10.0.1",
+    "react": "16.8.3",
+    "react-native": "0.59.4",
+    "react-native-action-button": "^2.8.5",
+    "react-native-datepicker": "^1.7.2",
+    "react-native-elements": "^1.1.0",
+    "react-native-enhanced-popup-menu": "^0.6.1",
+    "react-native-modal": "^9.0.0",
+    "react-native-popup-menu": "^0.15.5",
+    "react-native-radio-buttons-group": "^1.0.7",
+    "react-native-router-flux": "^4.0.6",
+    "react-native-search-header": "^0.3.2",
+    "react-native-vector-icons": "^6.4.2",
+    "react-redux": "^7.0.2",
+    "redux": "^4.0.1",
+    "redux-persist": "^5.10.0",
+    "tcomb-form": "^0.9.21",
+    "tcomb-form-native": "^0.6.20"
+  },
+  "devDependencies": {
+    "@babel/core": "7.4.3",
+    "@babel/runtime": "7.4.3",
+    "babel-cli": "^6.26.0",
+    "babel-jest": "24.7.1",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.97.0",
+    "jest": "24.7.1",
+    "metro-react-native-babel-preset": "0.53.1",
+    "react-test-renderer": "16.8.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+	
+}

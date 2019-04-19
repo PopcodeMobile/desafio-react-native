@@ -1,0 +1,4 @@
+#Thu Apr 18 20:42:12 BRT 2019
+base.0=/home/matheus/ProjetosRN/desafio-react-native/android/app/build/intermediates/transforms/dexMerger/debug/0
+renamed.0=classes.dex
+path.0=classes.dex
