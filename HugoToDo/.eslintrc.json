@@ -28,6 +28,7 @@
     "react/jsx-one-expression-per-line": "off",
     "react-native/no-color-literals": "off",
     "react-native/sort-styles": "off",
+    "react/prop-types": "off",
     "global-require": "off",
     "react-native/no-raw-text": "off"
   },
