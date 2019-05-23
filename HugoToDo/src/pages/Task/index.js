@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import TaskList from './components/taskList';
 import Header from './components/header';
+import ButtonAddTask from './components/buttonAddTask';
 
 const style = StyleSheet.create({
   container: {
@@ -15,6 +16,7 @@ export default function Task() {
     <View style={style.container}>
       <Header />
       <TaskList />
+      <ButtonAddTask />
     </View>
   );
 }
