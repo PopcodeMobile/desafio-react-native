@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Feather';
 
 const style = StyleSheet.create({
   container: {
-    backgroundColor: '#16b7fd',
+    backgroundColor: '#3274ea',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

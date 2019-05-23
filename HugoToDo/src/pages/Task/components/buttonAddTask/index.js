@@ -2,6 +2,10 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as ModalActions from '../../../../store/actions/modal';
+
 const style = StyleSheet.create({
   container: {
     position: 'absolute',
@@ -20,10 +24,15 @@ const style = StyleSheet.create({
   },
 });
 
-export default function ButtonAddTask() {
-  return (
-    <TouchableOpacity onPress={() => {}} style={style.container}>
-      <Icon name="plus" color="white" size={32} />
-    </TouchableOpacity>
-  );
-}
+const ButtonAddTask = ({ showModalAddTask }) => (
+  <TouchableOpacity onPress={() => showModalAddTask()} style={style.container}>
+    <Icon name="plus" color="white" size={32} />
+  </TouchableOpacity>
+);
+
+const mapDispatchToProps = dispatch => bindActionCreators(ModalActions, dispatch);
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(ButtonAddTask);

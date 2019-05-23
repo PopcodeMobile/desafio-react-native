@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import TaskList from './components/taskList';
 import Header from './components/header';
 import ButtonAddTask from './components/buttonAddTask';
+import AddTask from './components/taskModal/addTask';
 
 const style = StyleSheet.create({
   container: {
@@ -17,6 +18,7 @@ export default function Task() {
       <Header />
       <TaskList />
       <ButtonAddTask />
+      <AddTask />
     </View>
   );
 }
