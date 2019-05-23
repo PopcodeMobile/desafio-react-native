@@ -1,8 +1,25 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
-// import { Container } from './styles';
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 export default function taskItem() {
-  return <View />;
+  return (
+    <View style={style.contianer}>
+      <View>
+        <Text>Calendario</Text>
+      </View>
+      <View>
+        <Text>Title</Text>
+        <Text>Descricao</Text>
+      </View>
+      <View>
+        <Text>Icon</Text>
+      </View>
+    </View>
+  );
 }
