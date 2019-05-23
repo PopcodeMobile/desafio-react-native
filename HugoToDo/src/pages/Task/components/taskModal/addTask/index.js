@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import {
-  View, Text, Modal, StyleSheet, TouchableOpacity, TextInput,
+  View,
+  Text,
+  Modal,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+  KeyboardAvoidingView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { connect } from 'react-redux';
@@ -90,51 +96,53 @@ const AddTask = ({ modal, hideModalAddTask }) => {
           <Text style={style.title}>Add Task</Text>
         </View>
       </View>
-      <View style={style.formContainer}>
-        <Text style={style.formTitle}>Title</Text>
-        <TextInput placeholder="Add Title" selectionColor="#858585" style={style.formInput} />
-        <Text style={[style.formTitle, { marginTop: 10 }]}>Description</Text>
-        <TextInput
-          placeholder="Write Description"
-          selectionColor="#858585"
-          multiline
-          numberOfLines={3}
-          style={style.formInputTextArea}
-        />
-        <Text style={[style.formTitle, { marginTop: 10 }]}>Due Date</Text>
-        <View style={style.formInputDate}>
-          <TextInput placeholder="23/05/2019" selectionColor="#858585" />
-          <Icon name="calendar" size={24} style={style.iconCalendar} />
-        </View>
-        <Text style={[style.formTitle, { marginTop: 10 }]}>Task already completed?</Text>
-        <View style={style.formYesNoContainer}>
-          <View style={style.formYesNoContentYes}>
-            {check ? (
-              <Icon name="disc" size={20} color="#3274ea" />
-            ) : (
-              <TouchableOpacity onPress={() => setCheck(true)}>
-                <Icon name="circle" size={20} />
-              </TouchableOpacity>
-            )}
-            <Text style={style.formTitleYesNo}>Yes</Text>
+      <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
+        <View style={style.formContainer}>
+          <Text style={style.formTitle}>Title</Text>
+          <TextInput placeholder="Add Title" selectionColor="#858585" style={style.formInput} />
+          <Text style={[style.formTitle, { marginTop: 10 }]}>Description</Text>
+          <TextInput
+            placeholder="Write Description"
+            selectionColor="#858585"
+            multiline
+            numberOfLines={3}
+            style={style.formInputTextArea}
+          />
+          <Text style={[style.formTitle, { marginTop: 10 }]}>Due Date</Text>
+          <View style={style.formInputDate}>
+            <TextInput placeholder="23/05/2019" selectionColor="#858585" />
+            <Icon name="calendar" size={24} style={style.iconCalendar} />
           </View>
-          <View style={style.formYesNoContentNo}>
-            {!check ? (
-              <Icon name="disc" size={20} color="#3274ea" />
-            ) : (
-              <TouchableOpacity onPress={() => setCheck(false)}>
-                <Icon name="circle" size={20} />
-              </TouchableOpacity>
-            )}
-            <Text style={style.formTitleYesNo}>No</Text>
+          <Text style={[style.formTitle, { marginTop: 10 }]}>Task already completed?</Text>
+          <View style={style.formYesNoContainer}>
+            <View style={style.formYesNoContentYes}>
+              {check ? (
+                <Icon name="disc" size={20} color="#3274ea" />
+              ) : (
+                <TouchableOpacity onPress={() => setCheck(true)}>
+                  <Icon name="circle" size={20} />
+                </TouchableOpacity>
+              )}
+              <Text style={style.formTitleYesNo}>Yes</Text>
+            </View>
+            <View style={style.formYesNoContentNo}>
+              {!check ? (
+                <Icon name="disc" size={20} color="#3274ea" />
+              ) : (
+                <TouchableOpacity onPress={() => setCheck(false)}>
+                  <Icon name="circle" size={20} />
+                </TouchableOpacity>
+              )}
+              <Text style={style.formTitleYesNo}>No</Text>
+            </View>
+          </View>
+          <View style={style.formButtonContainer}>
+            <TouchableOpacity activeOpacity={0.8} style={style.formButton}>
+              <Text style={style.formButtonTitle}>ADD TASK</Text>
+            </TouchableOpacity>
           </View>
         </View>
-        <View style={style.formButtonContainer}>
-          <TouchableOpacity activeOpacity={0.8} style={style.formButton}>
-            <Text style={style.formButtonTitle}>ADD TASK</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };
