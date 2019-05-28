@@ -4,6 +4,9 @@ import TaskList from './components/taskList';
 import Header from './components/header';
 import ButtonAddTask from './components/buttonAddTask';
 import AddTask from './components/taskModal/addTask';
+import DeleteTask from './components/taskModal/deleteTask';
+import CompletedTask from './components/taskModal/completedTask';
+import StatisticTask from './components/taskModal/statisticTask';
 
 const style = StyleSheet.create({
   container: {
@@ -19,6 +22,9 @@ export default function Task() {
       <TaskList />
       <ButtonAddTask />
       <AddTask />
+      <DeleteTask />
+      <CompletedTask />
+      <StatisticTask />
     </View>
   );
 }

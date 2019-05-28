@@ -12,7 +12,7 @@ const style = StyleSheet.create({
 const Splash = ({ navigation }) => {
   setTimeout(() => {
     navigation.navigate('Task');
-  }, 2);
+  }, 2000);
 
   return <ImageBackground source={splashImage} style={style.imageContainer} />;
 };

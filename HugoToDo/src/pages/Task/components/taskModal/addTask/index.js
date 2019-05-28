@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
   Modal,
+  ScrollView,
   StyleSheet,
   TouchableOpacity,
+  Platform,
   TextInput,
   KeyboardAvoidingView,
 } from 'react-native';
+import moment from 'moment';
 import Icon from 'react-native-vector-icons/Feather';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as ModalActions from '../../../../../store/actions/modal';
+import * as TodoActions from '../../../../../store/actions/todos';
 
 const style = StyleSheet.create({
   container: {
@@ -67,7 +70,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 30,
   },
   formButton: {
     width: '90%',
@@ -80,14 +83,38 @@ const style = StyleSheet.create({
   formButtonTitle: { color: 'white', textAlign: 'center', fontSize: 14 },
 });
 
-const AddTask = ({ modal, hideModalAddTask }) => {
-  const [check, setCheck] = useState(false);
+const AddTask = (props) => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [dueDate, setDueDate] = useState(moment().format('L'));
+  const [completed, setCompleted] = useState('');
+
+  const handlerText = (text) => {
+    const newText = text
+      .replace(/\D/g, '')
+      .replace(/(\d{2})(\d)/, '$1/$2')
+      .replace(/(\d{2})(\d)/, '$1/$2')
+      .replace(/(\/\d{4})\d+?$/, '$1');
+    setDueDate(newText);
+  };
+
+  const handlerAddTask = () => {
+    const data = {
+      title,
+      description,
+      dueDate,
+      completed,
+    };
+    props.addTask(data);
+    props.hideModalAddTask();
+  };
+
   return (
-    <Modal animationType="slide" transparent={false} visible={modal.status}>
+    <Modal animationType="slide" transparent={false} visible={props.state.todos.showModalAddTask}>
       <View style={style.container}>
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => hideModalAddTask()}
+          onPress={() => props.hideModalAddTask()}
           style={style.contentButtonIcon}
         >
           <Icon name="chevron-left" size={30} color="white" />
@@ -96,62 +123,85 @@ const AddTask = ({ modal, hideModalAddTask }) => {
           <Text style={style.title}>Add Task</Text>
         </View>
       </View>
-      <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
-        <View style={style.formContainer}>
-          <Text style={style.formTitle}>Title</Text>
-          <TextInput placeholder="Add Title" selectionColor="#858585" style={style.formInput} />
-          <Text style={[style.formTitle, { marginTop: 10 }]}>Description</Text>
-          <TextInput
-            placeholder="Write Description"
-            selectionColor="#858585"
-            multiline
-            numberOfLines={3}
-            style={style.formInputTextArea}
-          />
-          <Text style={[style.formTitle, { marginTop: 10 }]}>Due Date</Text>
-          <View style={style.formInputDate}>
-            <TextInput placeholder="23/05/2019" selectionColor="#858585" />
-            <Icon name="calendar" size={24} style={style.iconCalendar} />
-          </View>
-          <Text style={[style.formTitle, { marginTop: 10 }]}>Task already completed?</Text>
-          <View style={style.formYesNoContainer}>
-            <View style={style.formYesNoContentYes}>
-              {check ? (
-                <Icon name="disc" size={20} color="#3274ea" />
-              ) : (
-                <TouchableOpacity onPress={() => setCheck(true)}>
-                  <Icon name="circle" size={20} />
-                </TouchableOpacity>
-              )}
-              <Text style={style.formTitleYesNo}>Yes</Text>
+      <ScrollView>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : null}
+          style={{ flex: 1 }}
+        >
+          <View style={style.formContainer}>
+            <Text style={style.formTitle}>Title</Text>
+            <TextInput
+              placeholder="Add Title"
+              selectionColor="#858585"
+              style={style.formInput}
+              value={title}
+              onChangeText={text => setTitle(text)}
+            />
+            <Text style={[style.formTitle, { marginTop: 10 }]}>Description</Text>
+            <TextInput
+              placeholder="Write Description"
+              selectionColor="#858585"
+              multiline
+              numberOfLines={3}
+              style={style.formInputTextArea}
+              value={description}
+              onChangeText={text => setDescription(text)}
+            />
+            <Text style={[style.formTitle, { marginTop: 10 }]}>Due Date</Text>
+            <View style={style.formInputDate}>
+              <TextInput
+                placeholder={moment().format('L')}
+                selectionColor="#858585"
+                value={dueDate}
+                onChangeText={text => handlerText(text)}
+                keyboardType="numeric"
+              />
+              <Icon name="calendar" size={24} style={style.iconCalendar} />
             </View>
-            <View style={style.formYesNoContentNo}>
-              {!check ? (
-                <Icon name="disc" size={20} color="#3274ea" />
-              ) : (
-                <TouchableOpacity onPress={() => setCheck(false)}>
-                  <Icon name="circle" size={20} />
-                </TouchableOpacity>
-              )}
-              <Text style={style.formTitleYesNo}>No</Text>
+            <Text style={[style.formTitle, { marginTop: 10 }]}>Task already completed?</Text>
+            <View style={style.formYesNoContainer}>
+              <View style={style.formYesNoContentYes}>
+                {completed ? (
+                  <Icon name="disc" size={20} color="#3274ea" />
+                ) : (
+                  <TouchableOpacity onPress={() => setCompleted(true)}>
+                    <Icon name="circle" size={20} />
+                  </TouchableOpacity>
+                )}
+                <Text style={style.formTitleYesNo}>Yes</Text>
+              </View>
+              <View style={style.formYesNoContentNo}>
+                {!completed ? (
+                  <Icon name="disc" size={20} color="#3274ea" />
+                ) : (
+                  <TouchableOpacity onPress={() => setCompleted(false)}>
+                    <Icon name="circle" size={20} />
+                  </TouchableOpacity>
+                )}
+                <Text style={style.formTitleYesNo}>No</Text>
+              </View>
+            </View>
+            <View style={style.formButtonContainer}>
+              <TouchableOpacity
+                onPress={() => handlerAddTask()}
+                activeOpacity={0.8}
+                style={style.formButton}
+              >
+                <Text style={style.formButtonTitle}>ADD TASK</Text>
+              </TouchableOpacity>
             </View>
           </View>
-          <View style={style.formButtonContainer}>
-            <TouchableOpacity activeOpacity={0.8} style={style.formButton}>
-              <Text style={style.formButtonTitle}>ADD TASK</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
+      </ScrollView>
     </Modal>
   );
 };
 
 const mapStateToProps = state => ({
-  modal: state.modal,
+  state,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(ModalActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(TodoActions, dispatch);
 
 export default connect(
   mapStateToProps,

@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as ModalActions from '../../../../store/actions/modal';
+import * as ModalActions from '../../../../store/actions/todos';
 
 const style = StyleSheet.create({
   container: {
