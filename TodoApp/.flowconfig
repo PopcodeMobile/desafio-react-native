@@ -11,5 +11,7 @@ unsafe-getters-setters=off
 
 [options]
 include_warnings=true
+module.system.node.resolve_dirname=node_modules
+module.system.node.resolve_dirname=src
 
 [strict]
