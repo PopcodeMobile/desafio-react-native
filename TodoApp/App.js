@@ -2,11 +2,11 @@
 import * as React from "react";
 import { View, StatusBar } from "react-native";
 import { Icon, Font, Constants, AppLoading } from "expo";
-import { Root } from "native-base";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 //$FlowFixMe
 import { store, persistor } from "./store";
+// @flow
 import TodoList from "./screens/TodoList";
 type Props = {
     /* ... */
@@ -48,23 +48,21 @@ export default class App extends React.Component<Props, State> {
             );
         } else {
             return (
-                <Root>
-                    <Provider store={store}>
-                        <PersistGate loading={null} persistor={persistor}>
-                            <View
-                                style={{
-                                    height: Constants.statusBarHeight
-                                }}
-                            >
-                                <StatusBar
-                                    translucent
-                                    barStyle="dark-content"
-                                />
-                            </View>
-                            <TodoList />
-                        </PersistGate>
-                    </Provider>
-                </Root>
+                <Provider store={store}>
+                    <PersistGate loading={null} persistor={persistor}>
+                        <View
+                            style={{
+                                height: Constants.statusBarHeight
+                            }}
+                        >
+                            <StatusBar
+                                translucent
+                                barStyle="dark-content"
+                            />
+                        </View>
+                        <TodoList />
+                    </PersistGate>
+                </Provider>
             );
         }
     }

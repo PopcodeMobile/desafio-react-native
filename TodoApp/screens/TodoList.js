@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import { Platform } from "react-native";
 import {
     Container,
@@ -10,64 +10,66 @@ import {
     Icon,
     Left,
     Body,
-    Text
+    Text,
+    Root
 } from "native-base";
 import { connect } from "react-redux";
 import { createTodo } from "../store/actions";
 import type { Action } from "../store/actions";
-
-type TodoInput = {
-    text: string,
-    dueDate?: Date
-};
+// @flow
+import TodoInput from "./../components/TodoInput";
+import type { TodoInputValue, TodoState } from "./../types/todoTypes";
 
 type Props = {
     todosIds: Array<string>,
-    todos: Object,
-    createTodo: (todo: TodoInput) => void
+    todos: TodoState,
+    createTodo: (todo: TodoInputValue) => void
 };
 
 type Dispatch = (action: Action) => void;
 class TodoList extends React.Component<Props> {
-    handleCreateTodo = (todo: TodoInput) => {
+    handleCreateTodo = (todo: TodoInputValue) => {
         this.props.createTodo(todo);
     };
 
-    render() {
-        const title = "Hugo's ToDo List";
-        const { todosIds, todos } = this.props;
+    render(): React.Node {
+        const title: string = "Hugo's ToDo List";
+        const { todosIds, todos, createTodo } = this.props;
         return (
-            <Container>
-                <Header>
-                    <Left>
-                        <Button transparent>
-                            <Icon
-                                name={
-                                    Platform.OS === "ios"
-                                        ? "ios-list"
-                                        : "md-list"
-                                }
-                            />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>{title}</Title>
-                    </Body>
-                </Header>
-                <Content padder>
-                    <Text>
-                        Header with noLeft prop, eliminates Left component
-                        for Android
-                    </Text>
-                    <Text>{JSON.stringify(todosIds)}</Text>
-                    <Text>{JSON.stringify(todos)}</Text>
-                </Content>
-            </Container>
+            <Root>
+                <Container>
+                    <Header>
+                        <Left>
+                            <Button transparent>
+                                <Icon
+                                    name={
+                                        Platform.OS === "ios"
+                                            ? "ios-list"
+                                            : "md-list"
+                                    }
+                                />
+                            </Button>
+                        </Left>
+                        <Body>
+                            <Title>{title}</Title>
+                        </Body>
+                    </Header>
+                    <Content padder>
+                        <TodoInput handleSubmit={createTodo} />
+                        <Text>
+                            Header with noLeft prop, eliminates Left
+                            component for Android
+                        </Text>
+                        <Text>{JSON.stringify(todosIds)}</Text>
+                        <Text>{JSON.stringify(todos)}</Text>
+                    </Content>
+                </Container>
+            </Root>
         );
     }
 }
 
-function mapStateToProps(todos: Object) {
+function mapStateToProps(todos: TodoState) {
     return {
         todos: todos.todosById,
         todosIds: todos.todosIds
@@ -76,7 +78,7 @@ function mapStateToProps(todos: Object) {
 
 function mapDispatchToProps(dispatch: Dispatch) {
     return {
-        createTodo: todo => dispatch(createTodo(todo))
+        createTodo: (todo: TodoInputValue) => dispatch(createTodo(todo))
     };
 }
 

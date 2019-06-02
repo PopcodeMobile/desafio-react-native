@@ -1,19 +1,15 @@
 // @Flow
 
 import { CREATE_TODO, DELETE_TODO, Action } from "../actions";
+import type { TodoState } from "./../../types/todoTypes";
+import showToast from "./../../utils/toastr";
 
-type State = {
-    +todosById: Array<{
-        +id: string,
-        +text: string,
-        +isDone: booleam,
-        +dueDate: Date
-    }>,
-    +todosIds: Array<string>
-};
 const initialState = { todosByIds: {}, todosIds: [] };
 
-function todos(state: State = initialState, action: Action): State {
+function todos(
+    state: TodoState = initialState,
+    action: Action
+): TodoState {
     switch (action.type) {
         case CREATE_TODO: {
             const now: Date = new Date();
@@ -22,6 +18,7 @@ function todos(state: State = initialState, action: Action): State {
                 ...action.payload,
                 isDone: false
             };
+            showToast("Sweet, a new todo was created!", "success");
             return {
                 todosIds: state.todosIds.concat(newTodo.id),
                 todosById: {
@@ -33,13 +30,13 @@ function todos(state: State = initialState, action: Action): State {
         case DELETE_TODO: {
             const {
                 [action.payload.todoId]: deletedItem,
-                ...newDeck
-            } = state.decks;
+                ...newTodo
+            } = state.todos;
             return {
                 todosIds: state.todosIds.filter(
                     id => id != state[action.payload.todoId]
                 ),
-                todosById: newDeck
+                todosById: newTodo
             };
         }
         default:
