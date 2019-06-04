@@ -2,8 +2,6 @@
 import { createStore } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-// import ExpoFileSystemStorage from "redux-persist-expo-filesystem";
-
 import reducer from "./reducers";
 const persistConfig = {
     key: "HugoTodo",

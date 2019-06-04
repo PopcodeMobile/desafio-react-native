@@ -2,6 +2,7 @@
 import * as React from "react";
 import { Platform, StyleSheet, TouchableOpacity } from "react-native";
 import { Content, Icon, Text, Badge, View } from "native-base";
+import DueDateIndicator from "./../components/DueDateIndicator";
 import type { Todo } from "./../types/todoTypes";
 
 type Props = {
@@ -10,10 +11,14 @@ type Props = {
 };
 
 type State = {
-    showTodoOptions: false
+    showTodoOptions: boolean
 };
 
 class TodoItem extends React.Component<Props, State> {
+    state = {
+        showTodoOptions: false
+    };
+
     render(): React.Node {
         const { todo } = this.props;
 
@@ -47,10 +52,9 @@ class TodoItem extends React.Component<Props, State> {
                             {todo.text}
                         </Text>
                     </Content>
-
-                    <Badge success>
-                        <Text>22</Text>
-                    </Badge>
+                    {todo.dueDate !== 0 && !todo.isDone && (
+                        <DueDateIndicator dueDate={todo.dueDate} />
+                    )}
                 </View>
             </TouchableOpacity>
         );
@@ -77,8 +81,10 @@ const styles = StyleSheet.create({
     view: {
         flexDirection: "row",
         justifyContent: "space-between",
-        marginBottom: 5,
-        marginTop: 5
+        marginBottom: 8,
+        marginTop: 5,
+        borderBottomColor: "#47315a",
+        borderBottomWidth: 0.3
     }
 });
 
