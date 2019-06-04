@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { Platform } from "react-native";
+import { Platform, FlatList } from "react-native";
 import {
     Container,
     Header,
@@ -11,30 +11,42 @@ import {
     Left,
     Body,
     Text,
-    Root
+    Root,
+    H3
 } from "native-base";
 import { connect } from "react-redux";
-import { createTodo } from "../store/actions";
+import { createTodo, toogleTodo, deleteTodo } from "../store/actions";
 import type { Action } from "../store/actions";
 // @flow
 import TodoInput from "./../components/TodoInput";
-import type { TodoInputValue, TodoState } from "./../types/todoTypes";
+import TodoItem from "./../components/TodoItem";
+import type {
+    TodoInputValue,
+    TodoState,
+    Todo
+} from "./../types/todoTypes";
 
 type Props = {
     todosIds: Array<string>,
     todos: TodoState,
-    createTodo: (todo: TodoInputValue) => void
+    createTodo: (todo: TodoInputValue) => void,
+    toogleTodo: (todoId: string) => void,
+    deleteTodo: (todoId: string) => void
 };
 
 type Dispatch = (action: Action) => void;
 class TodoList extends React.Component<Props> {
-    handleCreateTodo = (todo: TodoInputValue) => {
-        this.props.createTodo(todo);
+    renderTodoItem = ({ item }) => {
+        const { toogleTodo, deleteTodo } = this.props;
+        return <TodoItem todo={item} toogleTodo={toogleTodo} />;
     };
 
     render(): React.Node {
-        const title: string = "Hugo's ToDo List";
-        const { todosIds, todos, createTodo } = this.props;
+        const title: string = "Hugo's To Do List";
+        const { todos, createTodo } = this.props;
+        const todosArray: Array<Todo> = Object.values(todos);
+        const emptyText: string =
+            "So far so good, add new todos and keep going!";
         return (
             <Root>
                 <Container>
@@ -56,12 +68,15 @@ class TodoList extends React.Component<Props> {
                     </Header>
                     <Content padder>
                         <TodoInput handleSubmit={createTodo} />
-                        <Text>
-                            Header with noLeft prop, eliminates Left
-                            component for Android
-                        </Text>
-                        <Text>{JSON.stringify(todosIds)}</Text>
-                        <Text>{JSON.stringify(todos)}</Text>
+                        <Text>{JSON.stringify(todosArray)}</Text>
+                        <FlatList
+                            ListEmptyComponent={<H3>{emptyText}</H3>}
+                            data={todosArray}
+                            keyExtractor={(item, index) =>
+                                index.toString()
+                            }
+                            renderItem={this.renderTodoItem}
+                        />
                     </Content>
                 </Container>
             </Root>
@@ -69,16 +84,17 @@ class TodoList extends React.Component<Props> {
     }
 }
 
-function mapStateToProps(todos: TodoState) {
+function mapStateToProps(reducer: TodoState) {
     return {
-        todos: todos.todosById,
-        todosIds: todos.todosIds
+        todos: reducer.todos
     };
 }
 
 function mapDispatchToProps(dispatch: Dispatch) {
     return {
-        createTodo: (todo: TodoInputValue) => dispatch(createTodo(todo))
+        createTodo: (todo: TodoInputValue) => dispatch(createTodo(todo)),
+        toogleTodo: (todoId: string) => dispatch(toogleTodo(todoId)),
+        deleteTodo: (todoId: string) => dispatch(deleteTodo(todoId))
     };
 }
 

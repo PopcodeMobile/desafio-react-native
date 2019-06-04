@@ -3,7 +3,7 @@ import { Toast } from "native-base";
 type toastType = "success" | "error" | "warning";
 
 const showToast = (
-    message: text,
+    message: string,
     type: toastType,
     duration?: number = 5000
 ) => {

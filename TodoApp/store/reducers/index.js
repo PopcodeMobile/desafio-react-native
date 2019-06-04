@@ -1,18 +1,16 @@
 // @Flow
 
-import { CREATE_TODO, DELETE_TODO, Action } from "../actions";
+import { CREATE_TODO, DELETE_TODO, TOOGLE_TODO, Action } from "../actions";
 import type { TodoState } from "./../../types/todoTypes";
 import showToast from "./../../utils/toastr";
 
-const initialState = { todosByIds: {}, todosIds: [] };
-
-function todos(
-    state: TodoState = initialState,
+function reducer(
+    state: TodoState = { todos: {} },
     action: Action
 ): TodoState {
     switch (action.type) {
         case CREATE_TODO: {
-            const now: Date = new Date();
+            const now: string = new Date().getTime().toString();
             const newTodo: Object = {
                 id: now,
                 ...action.payload,
@@ -20,29 +18,43 @@ function todos(
             };
             showToast("Sweet, a new todo was created!", "success");
             return {
-                todosIds: state.todosIds.concat(newTodo.id),
-                todosById: {
-                    ...state.todosById,
+                ...state,
+                todos: {
+                    ...state.todos,
                     [newTodo.id]: newTodo
                 }
             };
         }
         case DELETE_TODO: {
             const {
+                // eslint-disable-next-line no-unused-vars
                 [action.payload.todoId]: deletedItem,
-                ...newTodo
+                ...newTodos
             } = state.todos;
             return {
-                todosIds: state.todosIds.filter(
-                    id => id != state[action.payload.todoId]
-                ),
-                todosById: newTodo
+                ...state,
+                todos: {
+                    ...newTodos
+                }
             };
         }
+        case TOOGLE_TODO: {
+            return {
+                ...state,
+                todos: {
+                    ...state.todos,
+                    [action.payload.todoId]: {
+                        ...state.todos[action.payload.todoId],
+                        isDone: !state.todos[action.payload.todoId].isDone
+                    }
+                }
+            };
+        }
+
         default:
             (action: empty);
             return state;
     }
 }
 
-export default todos;
+export default reducer;

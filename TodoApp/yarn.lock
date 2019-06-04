@@ -6383,6 +6383,11 @@ readable-stream@^2.0.0, readable-stream@^2.0.1, readable-stream@^2.0.2, readable
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
 
+redux-persist-expo-filesystem@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/redux-persist-expo-filesystem/-/redux-persist-expo-filesystem-1.0.1.tgz#904a56d804dbda08cdfa6b8347b57a05927d5950"
+  integrity sha512-5yLEYbs2Qt4mFxrxzRpp1OyjgBRtH14qEwsHzHMkRWPZ/yM/g+VdUvimc/b+6DDPiqNjpnSsW9M+a54zTzwlcg==
+
 redux-persist@^5.10.0:
   version "5.10.0"
   resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.10.0.tgz#5d8d802c5571e55924efc1c3a9b23575283be62b"

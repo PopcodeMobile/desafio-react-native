@@ -2,15 +2,19 @@
 
 export type TodoInputValue = {
     text: string,
-    dueDate?: Date
+    dueDate: number
 };
 
 export type TodoState = {
-    +todosById: Array<{
-        +id: string,
-        +text: string,
-        +isDone: boolean,
-        +dueDate: Date
-    }>,
-    +todosIds: Array<string>
+    +id: string,
+    +text: string,
+    +isDone: boolean,
+    +dueDate: number
+};
+
+export type Todo = {
+    id: string,
+    text: string,
+    isDone: boolean,
+    dueDate: number
 };
