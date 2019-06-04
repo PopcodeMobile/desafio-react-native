@@ -6,10 +6,12 @@ export type TodoInputValue = {
 };
 
 export type TodoState = {
-    +id: string,
-    +text: string,
-    +isDone: boolean,
-    +dueDate: number
+    todos: {
+        +id: string,
+        +text: string,
+        +isDone: boolean,
+        +dueDate: number
+    }
 };
 
 export type Todo = {
@@ -17,4 +19,11 @@ export type Todo = {
     text: string,
     isDone: boolean,
     dueDate: number
+};
+
+export type todoIdType = { todoId: string };
+
+export type todoEditType = {
+    todoId: string,
+    values: TodoInputValue
 };

@@ -7,9 +7,15 @@ type Props = {
     dueDate: number
 };
 
-const handleDateInfo = dueDate => {
+type TypeDateInfo = {
+    value: number,
+    unit: string,
+    color: string
+};
+
+const handleDateInfo = (dueDate: number): TypeDateInfo => {
     const today: number = new Date().getTime();
-    let diff = dueDate - today;
+    let diff: number = dueDate - today;
     const isOverdue = diff < 0;
     diff = Math.abs(diff);
     if (diff > 2592000000) {

@@ -4,10 +4,12 @@ import { Platform, StyleSheet } from "react-native";
 import { Form, Item, Input, Button, Icon, Label, Text } from "native-base";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import showToast from "./../utils/toastr";
-import type { TodoInputValue } from "./../types/todoTypes";
+import type { TodoInputValue, Todo } from "./../types/todoTypes";
 
 type Props = {
-    handleSubmit: TodoInputValue => void
+    handleSubmit: TodoInputValue => void,
+    todo?: Todo,
+    action: string
 };
 
 type State = {
@@ -17,6 +19,14 @@ type State = {
 };
 
 class TodoInput extends React.Component<Props, State> {
+    componentDidMount() {
+        const { todo } = this.props;
+        this.setState({
+            text: todo ? todo.text : "",
+            dueDate: todo ? new Date(todo.dueDate) : new Date()
+        });
+    }
+
     state: State = {
         text: "",
         dueDate: 0,
@@ -47,15 +57,16 @@ class TodoInput extends React.Component<Props, State> {
                 text,
                 dueDate
             });
-            this.setState({ text: "" });
+            this.setState({ text: "", dueDate: 0 });
         } else {
-            showToast("Please type a todo!", "warning");
+            showToast("Please type an action to do!", "warning");
         }
     };
 
     render(): React.Node {
         const labelText: string = "To do";
         const dateNow: Date = new Date();
+        const { action } = this.props;
         const { text, dueDate } = this.state;
         return (
             <Form style={styles.form}>
@@ -92,7 +103,7 @@ class TodoInput extends React.Component<Props, State> {
                     style={styles.addButton}
                     onPress={this.handleInputSubmit}
                 >
-                    <Text style={styles.font20}> ADD </Text>
+                    <Text style={styles.font20}> {action} </Text>
                 </Button>
             </Form>
         );
@@ -107,7 +118,7 @@ const styles = StyleSheet.create({
     textItem: {
         flexGrow: 3,
         marginRight: 0,
-        marginTop: -5
+        marginTop: -3
     }
 });
 

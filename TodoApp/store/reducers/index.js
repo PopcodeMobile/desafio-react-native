@@ -1,6 +1,12 @@
 // @Flow
 
-import { CREATE_TODO, DELETE_TODO, TOOGLE_TODO, Action } from "../actions";
+import {
+    CREATE_TODO,
+    DELETE_TODO,
+    TOOGLE_TODO,
+    EDIT_TODO,
+    Action
+} from "../actions";
 import type { TodoState } from "./../../types/todoTypes";
 import showToast from "./../../utils/toastr";
 
@@ -16,7 +22,7 @@ function reducer(
                 ...action.payload,
                 isDone: false
             };
-            showToast("Sweet, a new todo was created!", "success");
+            showToast("A new to do was created!", "success");
             return {
                 ...state,
                 todos: {
@@ -31,10 +37,24 @@ function reducer(
                 [action.payload.todoId]: deletedItem,
                 ...newTodos
             } = state.todos;
+            showToast("The to do item was removed!", "success");
             return {
                 ...state,
                 todos: {
                     ...newTodos
+                }
+            };
+        }
+        case EDIT_TODO: {
+            showToast("The to do item was edited!", "success");
+            return {
+                ...state,
+                todos: {
+                    ...state.todos,
+                    [action.payload.todoId]: {
+                        ...state.todos[action.payload.todoId],
+                        ...action.payload.values
+                    }
                 }
             };
         }
