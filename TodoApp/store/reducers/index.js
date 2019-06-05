@@ -5,13 +5,14 @@ import {
     DELETE_TODO,
     TOOGLE_TODO,
     EDIT_TODO,
+    SET_FILTER,
     Action
 } from "../actions";
 import type { TodoState } from "./../../types/todoTypes";
 import showToast from "./../../utils/toastr";
 
 function reducer(
-    state: TodoState = { todos: {} },
+    state: TodoState = { todos: {}, visibilityFilter: "SHOW_ALL" },
     action: Action
 ): TodoState {
     switch (action.type) {
@@ -70,6 +71,11 @@ function reducer(
                 }
             };
         }
+        case SET_FILTER:
+            return {
+                ...state,
+                visibilityFilter: action.payload.filter
+            };
 
         default:
             (action: empty);

@@ -23,6 +23,8 @@ export type Todo = {
 
 export type todoIdType = { todoId: string };
 
+export type filterType = { filter: string };
+
 export type todoEditType = {
     todoId: string,
     values: TodoInputValue

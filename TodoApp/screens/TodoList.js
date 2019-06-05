@@ -12,14 +12,16 @@ import {
     Body,
     Text,
     Root,
-    H3
+    H3,
+    Segment
 } from "native-base";
 import { connect } from "react-redux";
 import {
     createTodo,
     toogleTodo,
     deleteTodo,
-    editTodo
+    editTodo,
+    setFilter
 } from "../store/actions";
 import type { Action } from "../store/actions";
 // @flow
@@ -31,14 +33,18 @@ import type {
     TodoState,
     Todo
 } from "./../types/todoTypes";
+import { getVisibleTodos } from "../selectors";
 
 type Props = {
     todosIds: Array<string>,
     todos: TodoState,
+    todosArray: Array<Todo>,
+    filter: string,
     createTodo: (todo: TodoInputValue) => void,
     toogleTodo: (todoId: string) => void,
     deleteTodo: (todoId: string) => void,
-    editTodo: (todoId: string, todo: TodoInputValue) => void
+    editTodo: (todoId: string, todo: TodoInputValue) => void,
+    setFilter: (filter: string) => void
 };
 
 type State = {
@@ -83,9 +89,9 @@ class TodoList extends React.Component<Props, State> {
 
     render(): React.Node {
         const title: string = "Hugo's To Do List";
-        const { todos, createTodo } = this.props;
+        const { todos, createTodo, todosArray, setFilter } = this.props;
         const { showEditModal, editTodoId } = this.state;
-        const todosArray: Array<Todo> = Object.values(todos);
+        // const todosArray: Array<Todo> = Object.values(todos);
         const emptyText: string =
             "So far so good, add new todos and keep going!";
         return (
@@ -107,12 +113,33 @@ class TodoList extends React.Component<Props, State> {
                             <Title>{title}</Title>
                         </Body>
                     </Header>
+                    <Segment>
+                        <Button
+                            first
+                            active={this.props.filter === "SHOW_DONE"}
+                            onPress={() => setFilter("SHOW_DONE")}
+                        >
+                            <Text>Done</Text>
+                        </Button>
+                        <Button
+                            active={this.props.filter === "SHOW_ALL"}
+                            onPress={() => setFilter("SHOW_ALL")}
+                        >
+                            <Text>All</Text>
+                        </Button>
+                        <Button
+                            last
+                            active={this.props.filter === "SHOW_ACTIVE"}
+                            onPress={() => setFilter("SHOW_ACTIVE")}
+                        >
+                            <Text>Active</Text>
+                        </Button>
+                    </Segment>
                     <Content padder>
                         <TodoInput
                             handleSubmit={createTodo}
                             action="ADD"
                         />
-                        <Text>{JSON.stringify(todosArray)}</Text>
                         <FlatList
                             ListEmptyComponent={<H3>{emptyText}</H3>}
                             data={todosArray}
@@ -136,7 +163,9 @@ class TodoList extends React.Component<Props, State> {
 
 function mapStateToProps(reducer: TodoState) {
     return {
-        todos: reducer.todos
+        todos: reducer.todos,
+        filter: reducer.visibilityFilter,
+        todosArray: getVisibleTodos(reducer)
     };
 }
 
@@ -146,7 +175,8 @@ function mapDispatchToProps(dispatch: Dispatch) {
         toogleTodo: (todoId: string) => dispatch(toogleTodo(todoId)),
         deleteTodo: (todoId: string) => dispatch(deleteTodo(todoId)),
         editTodo: (todoId: string, todo: TodoInputValue) =>
-            dispatch(editTodo(todoId, todo))
+            dispatch(editTodo(todoId, todo)),
+        setFilter: (filter: string) => dispatch(setFilter(filter))
     };
 }
 

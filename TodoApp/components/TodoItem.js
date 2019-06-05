@@ -40,7 +40,10 @@ class TodoItem extends React.Component<Props, State> {
             >
                 <View style={styles.view}>
                     <Icon
-                        style={styles.checkIcon}
+                        style={[
+                            styles.checkIcon,
+                            todo.isDone ? styles.itemDoneColor : ""
+                        ]}
                         name={
                             todo.isDone
                                 ? Platform.OS === "ios"
@@ -53,11 +56,12 @@ class TodoItem extends React.Component<Props, State> {
                     />
                     <Content style={styles.contentText}>
                         <Text
-                            style={
+                            style={[
                                 todo.text.length < 80
                                     ? styles.shortText
-                                    : styles.longText
-                            }
+                                    : styles.longText,
+                                todo.isDone ? styles.itemDoneColor : ""
+                            ]}
                         >
                             {todo.text}
                         </Text>
@@ -104,6 +108,7 @@ class TodoItem extends React.Component<Props, State> {
         );
     }
 }
+const gray = "gray";
 const red = "#e5001e";
 const styles = StyleSheet.create({
     buttonsView: {
@@ -120,7 +125,8 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     itemDoneColor: {
-        color: "gray"
+        color: gray,
+        textDecorationLine: "line-through"
     },
     longText: {
         fontSize: 10,
@@ -136,7 +142,6 @@ const styles = StyleSheet.create({
         paddingTop: 3
     },
     view: {
-        // borderBottomColor: "#47315a",
         borderBottomWidth: 0.3,
         flexDirection: "row",
         justifyContent: "space-between",
