@@ -1,6 +1,12 @@
 // @flow
 import * as React from "react";
-import { Platform, StyleSheet, TouchableOpacity } from "react-native";
+import {
+    Platform,
+    StyleSheet,
+    TouchableOpacity,
+    Animated,
+    Easing
+} from "react-native";
 import { Content, Icon, Text, View, Button } from "native-base";
 import DueDateIndicator from "./../components/DueDateIndicator";
 import type { Todo } from "./../types/todoTypes";
@@ -13,23 +19,48 @@ type Props = {
 };
 
 type State = {
-    showTodoOptions: boolean
+    showTodoOptions: boolean,
+    animations: Object
 };
 
 class TodoItem extends React.Component<Props, State> {
     state = {
-        showTodoOptions: false
+        showTodoOptions: false,
+        animations: {
+            height: new Animated.Value(0),
+            fade: new Animated.Value(0)
+        }
     };
 
-    toogleOptions() {
+    toogleOptions(): void {
         this.setState(prevState => ({
-            showTodoOptions: !prevState.showTodoOptions
+            showTodoOptions: !prevState.showTodoOptions,
+            animations: {
+                height: new Animated.Value(0),
+                fade: new Animated.Value(0)
+            }
         }));
+        // https://stackoverflow.com/questions/50602876/react-native-state-change-transitions
+        const { height, fade } = this.state.animations;
+        Animated.parallel([
+            Animated.timing(height, {
+                toValue: 15,
+                easing: Easing.elastic(),
+                duration: 500,
+                delay: 1500
+            }),
+            Animated.timing(fade, {
+                toValue: 1,
+                easing: Easing.ease,
+                duration: 1000,
+                delay: 1500
+            })
+        ]).start();
     }
 
     render(): React.Node {
         const { todo, toogleTodo, deleteTodo, showEditModal } = this.props;
-        const { showTodoOptions } = this.state;
+        const { showTodoOptions, animations } = this.state;
 
         if (todo === undefined) return <></>;
 
@@ -72,7 +103,13 @@ class TodoItem extends React.Component<Props, State> {
                             <DueDateIndicator dueDate={todo.dueDate} />
                         )}
                     {showTodoOptions && (
-                        <View style={styles.buttonsView}>
+                        <Animated.View
+                            style={[
+                                styles.buttonsView,
+                                { height: animations.height },
+                                { opacity: animations.fade }
+                            ]}
+                        >
                             <Button
                                 style={styles.optionsButton}
                                 transparent
@@ -101,7 +138,7 @@ class TodoItem extends React.Component<Props, State> {
                             >
                                 <Icon type="FontAwesome" name="pencil" />
                             </Button>
-                        </View>
+                        </Animated.View>
                     )}
                 </View>
             </TouchableOpacity>

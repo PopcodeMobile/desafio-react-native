@@ -49,7 +49,7 @@ export default function EditTodoModal(props: Props): React.Node {
                     </Button>
                 </Right>
             </Header>
-            <Content>
+            <Content style={styles.content}>
                 <TodoInput
                     handleSubmit={handleEditTodo}
                     todo={todo}
@@ -62,6 +62,7 @@ export default function EditTodoModal(props: Props): React.Node {
 
 const white = "white";
 const styles = StyleSheet.create({
+    content: { paddingLeft: 5, paddingTop: 5 },
     modalView: {
         backgroundColor: white,
         flex: 1,

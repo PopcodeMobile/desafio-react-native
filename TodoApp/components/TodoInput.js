@@ -114,9 +114,10 @@ const styles = StyleSheet.create({
     addButton: { marginRight: -10 },
     calendarIcon: { fontSize: 30, marginRight: 7 },
     font20: { fontSize: 20 },
-    form: { flexDirection: "row" },
+    form: { flexDirection: "row", marginBottom: 5 },
     textItem: {
         flexGrow: 3,
+        marginLeft: 0,
         marginRight: 0,
         marginTop: -3
     }
