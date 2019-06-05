@@ -110,7 +110,7 @@ class TodoInput extends React.Component<Props, State> {
     }
 }
 
-const styles = StyleSheet.create({
+const styles: Object = StyleSheet.create({
     addButton: { marginRight: -10 },
     calendarIcon: { fontSize: 30, marginRight: 7 },
     font20: { fontSize: 20 },

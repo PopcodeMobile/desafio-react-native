@@ -59,7 +59,7 @@ class TodoList extends React.Component<Props, State> {
         });
     };
 
-    renderTodoItem = ({ item }) => {
+    renderTodoItem = ({ item }: Todo): React.Node => {
         const { toogleTodo, deleteTodo } = this.props;
         return (
             <TodoItem

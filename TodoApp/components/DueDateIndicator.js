@@ -18,30 +18,34 @@ const handleDateInfo = (dueDate: number): TypeDateInfo => {
     let diff: number = dueDate - today;
     const isOverdue = diff < 0;
     diff = Math.abs(diff);
+    let value = 0;
     if (diff > 2592000000) {
+        value = Math.round(diff / 2629800000);
         return {
-            value: Math.trunc(diff / 2629800000),
-            unit: "mon",
+            value,
+            unit: value > 1 ? "mons" : "mon",
             color: isOverdue ? "#e5001e" : "#4dad4a"
         };
     } else if (diff > 86400000) {
-        //> 1 day warning, dueDate too close
+        value = Math.round(diff / 86400000);
         return {
-            value: Math.trunc(diff / 86400000),
-            unit: "days",
+            value,
+            unit: value > 1 ? "days" : "day",
             color: isOverdue ? "#e5001e" : "#4dad4a"
         };
     } else if (diff > 3600000) {
-        //> 1 day warning, dueDate too close
+        //less than 1 day warning, dueDate is too close of "now"
+        value = Math.round(diff / 3600000);
         return {
-            value: Math.trunc(diff / 3600000),
-            unit: "hrs",
+            value,
+            unit: value > 1 ? "hrs" : "hr",
             color: isOverdue ? "#e5001e" : "#eb9e3e"
         };
     } else {
+        value = Math.round(diff / 60000) || 0;
         return {
-            value: Math.trunc(diff / 60000),
-            unit: "min",
+            value,
+            unit: value > 1 ? "mins" : "min",
             color: isOverdue ? "#e5001e" : "#eb9e3e"
         };
     }
@@ -60,7 +64,12 @@ export default function DueDateIndicator(props: Props): React.Node {
 
 const white = "white";
 const styles = StyleSheet.create({
-    textUnit: { color: white, fontSize: 8, marginTop: 0 },
+    textUnit: {
+        color: white,
+        fontSize: 8,
+        marginTop: 0,
+        textAlign: "center"
+    },
     textValue: {
         color: white,
         fontSize: 12,
@@ -72,6 +81,7 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start",
         borderRadius: 3,
         justifyContent: "center",
+        minWidth: 20,
         paddingBottom: 2,
         paddingLeft: 3,
         paddingRight: 3,
