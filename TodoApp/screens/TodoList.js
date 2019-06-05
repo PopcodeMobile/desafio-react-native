@@ -1,20 +1,7 @@
 // @flow
 import * as React from "react";
-import { Platform, FlatList } from "react-native";
-import {
-    Container,
-    Header,
-    Title,
-    Content,
-    Button,
-    Icon,
-    Left,
-    Body,
-    Text,
-    Root,
-    H3,
-    Segment
-} from "native-base";
+import { FlatList, StyleSheet } from "react-native";
+import { Container, Content, Root, H3 } from "native-base";
 import { connect } from "react-redux";
 import {
     createTodo,
@@ -25,6 +12,7 @@ import {
 } from "../store/actions";
 import type { Action } from "../store/actions";
 // @flow
+import TodoHeader from "./../components/TodoHeader";
 import TodoInput from "./../components/TodoInput";
 import TodoItem from "./../components/TodoItem";
 import EditTodoModal from "./../components/EditTodoModal";
@@ -33,13 +21,14 @@ import type {
     TodoState,
     Todo
 } from "./../types/todoTypes";
-import { getVisibleTodos } from "../selectors";
+import { getVisibleTodos, getActiveItensTotal } from "../selectors";
 
 type Props = {
     todosIds: Array<string>,
     todos: TodoState,
     todosArray: Array<Todo>,
     filter: string,
+    activeItensTotal: number,
     createTodo: (todo: TodoInputValue) => void,
     toogleTodo: (todoId: string) => void,
     deleteTodo: (todoId: string) => void,
@@ -88,60 +77,36 @@ class TodoList extends React.Component<Props, State> {
     };
 
     render(): React.Node {
-        const title: string = "Hugo's To Do List";
-        const { todos, createTodo, todosArray, setFilter } = this.props;
+        const {
+            todos,
+            createTodo,
+            todosArray,
+            setFilter,
+            activeItensTotal,
+            filter
+        } = this.props;
         const { showEditModal, editTodoId } = this.state;
-        // const todosArray: Array<Todo> = Object.values(todos);
         const emptyText: string =
             "So far so good, add new todos and keep going!";
         return (
             <Root>
                 <Container>
-                    <Header>
-                        <Left>
-                            <Button transparent>
-                                <Icon
-                                    name={
-                                        Platform.OS === "ios"
-                                            ? "ios-list"
-                                            : "md-list"
-                                    }
-                                />
-                            </Button>
-                        </Left>
-                        <Body>
-                            <Title>{title}</Title>
-                        </Body>
-                    </Header>
-                    <Segment>
-                        <Button
-                            first
-                            active={this.props.filter === "SHOW_DONE"}
-                            onPress={() => setFilter("SHOW_DONE")}
-                        >
-                            <Text>Done</Text>
-                        </Button>
-                        <Button
-                            active={this.props.filter === "SHOW_ALL"}
-                            onPress={() => setFilter("SHOW_ALL")}
-                        >
-                            <Text>All</Text>
-                        </Button>
-                        <Button
-                            last
-                            active={this.props.filter === "SHOW_ACTIVE"}
-                            onPress={() => setFilter("SHOW_ACTIVE")}
-                        >
-                            <Text>Active</Text>
-                        </Button>
-                    </Segment>
+                    <TodoHeader
+                        setFilter={setFilter}
+                        activeItensTotal={activeItensTotal}
+                        filter={filter}
+                    />
                     <Content padder>
                         <TodoInput
                             handleSubmit={createTodo}
                             action="ADD"
                         />
                         <FlatList
-                            ListEmptyComponent={<H3>{emptyText}</H3>}
+                            ListEmptyComponent={
+                                <H3 style={styles.emptyText}>
+                                    {emptyText}
+                                </H3>
+                            }
                             data={todosArray}
                             keyExtractor={(item, index) =>
                                 index.toString()
@@ -161,11 +126,16 @@ class TodoList extends React.Component<Props, State> {
     }
 }
 
+const styles = StyleSheet.create({
+    emptyText: { marginTop: 10 }
+});
+
 function mapStateToProps(reducer: TodoState) {
     return {
         todos: reducer.todos,
         filter: reducer.visibilityFilter,
-        todosArray: getVisibleTodos(reducer)
+        todosArray: getVisibleTodos(reducer),
+        activeItensTotal: getActiveItensTotal(reducer)
     };
 }
 

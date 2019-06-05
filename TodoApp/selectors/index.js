@@ -9,10 +9,15 @@ export const getVisibleTodos = createSelector(
         switch (visibilityFilter) {
             case "SHOW_ALL":
                 return todos;
-            case "SHOW_DONE":
+            case "SHOW_COMPLETED":
                 return todos.filter(t => t.isDone);
             case "SHOW_ACTIVE":
                 return todos.filter(t => !t.isDone);
         }
     }
+);
+
+export const getActiveItensTotal = createSelector(
+    getTodos,
+    todos => todos.filter(t => !t.isDone).length
 );
