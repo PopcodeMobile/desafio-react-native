@@ -1,46 +1,60 @@
 import React from 'react';
-import DateTimePicker from 'react-native-modal-datetime-picker';
-import moment from 'moment';
 
 import { 
     StyleSheet, Text, Button, 
     View, Image, TextInput, 
-    TouchableOpacity, CheckBox,
-    Card, CardItem
+    TouchableOpacity
      } from 'react-native';
-import { setRecoveryProps } from 'expo/build/ErrorRecovery/ErrorRecovery';
 
-const DisplayContainer = (props) => (
+import {CheckBox, Card, CardItem} from 'native-base'; 
 
-    <View  style={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between'}}>
+const DisplayContainer = (props) => {
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-        
-            <CheckBox checked={false} />
+    let leftItems = 0;
 
-            <Text>Active Items </Text>
+    props.itemList.map(item => {
+        if(!item.completed && item.id > 0) leftItems++; 
+    });
 
-        </View>   
+
+    return(
+
+        <View  style={{flex:1, flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between'}}>
+
+            <View style={{ flex:1, width:300, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+            
+               <View style={{ width: 60, height: 50, alignItems: 'center', justifyContent:'center' }}>
+                    <CheckBox checked={props.activeItems} onPress={props.activeItemsPressed} />
+               </View>
+                
+                <Text>Active Items</Text>
+
+            </View>   
                         
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-        
-            <CheckBox checked={false} />
+            <View style={{ flex:1, width:300, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
 
-            <Text>Completed Items </Text>
+                <View style={{ width: 60, height: 50, alignItems: 'center', justifyContent:'center' }}>
+                    <CheckBox checked={props.completedItems} onPress={props.completedItemsPressed} />
+                </View>
+            
+                <Text>Completed Items </Text>
 
-        </View> 
+            </View> 
 
-        <View style={{ height: 50, alignItems: 'center', justifyContent: 'center' }}>
-        
-            <Text>X Items to be completed</Text>
+            <View style={{ height: 50, alignItems: 'center', justifyContent: 'center' }}>
+            
+                <Text>{leftItems} Items to be completed</Text>  
 
-        </View>  
+            </View>  
 
-        <Button title='Display' onPress={props.toggleItems} style={{ borderRadius: 30 }}/>
+            <Button title='Display' onPress={props.toggleItems} style={{ borderRadius: 30 }}/>
     
-    </View>
+        </View>
+      
+
+    );
 
 
-);
+} 
 
 export default DisplayContainer;

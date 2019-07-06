@@ -1,12 +1,11 @@
 import React from 'react';
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import moment from 'moment';
+
 
 import { 
-    StyleSheet, Text, Button, 
+    Text, Button, 
     View, Image, TextInput, 
-    TouchableOpacity, CheckBox,
-    Card, CardItem
+    TouchableOpacity 
      } from 'react-native';
 
 const AddContainer = (props) => (
@@ -19,7 +18,7 @@ const AddContainer = (props) => (
 
             <TextInput
                     style={{height: 20, width: 200, borderColor: 'gray', borderWidth: 1}}
-                    
+                    onChangeText={props.handleChangeText} maxLength={10}
                 />
 
             <View>
@@ -42,13 +41,11 @@ const AddContainer = (props) => (
 
         </View>
 
-        <Text style={{color: 'green', fontSize: 20}}>{props.chosenDate}</Text>
-
         <View style={{ alignItems: 'center',  justifyContent: 'center', paddingBottom: 20 }}>
 
             <View style={{ borderRadius: 30, shadowRadius: 35, shadowOpacity: 0.5, width: 100 }}>
 
-                <Button title='Add Items' style={{ borderRadius: 30 }}/>
+                <Button title='Add Items' onPress={props.addItemToList} style={{ borderRadius: 30 }}/>
 
             </View>
 
