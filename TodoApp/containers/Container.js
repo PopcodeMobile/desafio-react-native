@@ -9,7 +9,7 @@ import ItemList from '../components/ItemList';
 import { 
     StyleSheet, Text, Button, 
     View, Image, TextInput, 
-    TouchableOpacity
+    TouchableOpacity, ScrollView
      } from 'react-native';
      
 import {  CheckBox, Card, CardItem } from 'native-base';
@@ -66,12 +66,10 @@ class Container extends Component {
     }
 
     activeItemsPressed = () => {
-        console.log('Oi eu sou o Goku!');
         this.setState({ activeItems: true, completedItems: false });
     }
 
     completedItemsPressed = () => {
-        console.log('Oi eu sou o Goku! 2');
         this.setState({ activeItems: false, completedItems: true });
     }
 
@@ -194,21 +192,22 @@ class Container extends Component {
         );
 
         if(this.state.displayItems){
-            display = <ItemList 
+            
+            display = 
+            
+                    <ItemList 
                         itList={this.state.itemList} 
                         toggleItems={this.toggleItems} 
                         removeItemFromList={this.removeItemFromList} 
                         onConfirm={this.handlePicker}
-                        onCancel={this.hidePicker} 
                         editItemDate={this.editItemDate} 
                         editItemText={this.editItemText}
                         editItemStatus={this.editItemStatus}
-                        showPicker={this.showPicker}
-
-                        isVisible={this.state.isVisible} 
                         completedItems={this.state.completedItems}
 
                         />;
+
+                      
                        
             addContainer = null;           
         }

@@ -12,13 +12,13 @@ const AddContainer = (props) => (
 
     <View>
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingTop: 200 }}>
+        <View style={{ height: 100, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
 
             <Text>Item: </Text>
 
             <TextInput
                     style={{height: 20, width: 200, borderColor: 'gray', borderWidth: 1}}
-                    onChangeText={props.handleChangeText} maxLength={10}
+                    onChangeText={props.handleChangeText} maxLength={20}
                 />
 
             <View>
@@ -41,13 +41,9 @@ const AddContainer = (props) => (
 
         </View>
 
-        <View style={{ alignItems: 'center',  justifyContent: 'center', paddingBottom: 20 }}>
+        <View style={{ height: 100, paddingTop: 40 }}>
 
-            <View style={{ borderRadius: 30, shadowRadius: 35, shadowOpacity: 0.5, width: 100 }}>
-
-                <Button title='Add Items' onPress={props.addItemToList} style={{ borderRadius: 30 }}/>
-
-            </View>
+            <Button title='Add Items' onPress={props.addItemToList} containerStyle={{ marginBottom: 0 }}/>
 
         </View>
 

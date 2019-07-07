@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, View, Text } from 'react-native';
+import { Button, View, ScrollView } from 'react-native';
 import Item from './Item';
 
 const ItemList = (props) => {
@@ -11,17 +11,13 @@ const ItemList = (props) => {
 
             return (
         
-                <View key={item.id} style={{ flex: 1, height: 20 }}>
+                <View key={item.id}>
                     <Item 
                         itemText={item.text} 
                         itemDate={item.date}
                         itemElement={item} 
                         removeItem={props.removeItemFromList}
-                        
-                        showPicker={props.showPicker}
-                        isVisible={props.isVisible} 
                         onConfirm={props.onConfirm}
-                        onCancel={props.onCancel} 
                         editItemDate={props.editItemDate} 
                         editItemText={props.editItemText}
                         editItemStatus={props.editItemStatus}
@@ -37,7 +33,7 @@ const ItemList = (props) => {
 
             return (
         
-                <View key={item.id} style={{ flex: 1, height: 20 }}>
+                <View key={item.id}>
                     <Item 
                         itemText={item.text} 
                         itemDate={item.date}
@@ -67,10 +63,20 @@ const ItemList = (props) => {
     
     return (
 
-        <View style={{ flex: 1, borderWidth:1, alignItems:'center', justifyContent:'center' }}> 
-            {items}
+       
+        <View style={{ flex:1 }}>
+
+            <ScrollView>
+            
+                {items}
+
+            </ScrollView>
+
             <Button title='Back' onPress={props.toggleItems} />
+
         </View>
+            
+      
 
     );
 }
