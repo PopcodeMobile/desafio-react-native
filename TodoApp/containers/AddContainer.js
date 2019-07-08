@@ -10,9 +10,14 @@ import {
 
 const AddContainer = (props) => (
 
-    <View>
+    <View style={ { flex: 1, justifyContent: 'space-between' }}>
 
-        <View style={{ height: 100, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+        <View style={{alignItems: 'center', justifyContent: 'center', paddingTop: 70}}>
+            <Image source={require('../assets/todoicon.png')}
+                        style={{ width: 100, height: 100, borderRadius: 50 }}></Image>
+        </View>
+
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
 
             <Text>Item: </Text>
 
@@ -41,12 +46,9 @@ const AddContainer = (props) => (
 
         </View>
 
-        <View style={{ height: 100, paddingTop: 40 }}>
 
-            <Button title='Add Items' onPress={props.addItemToList} containerStyle={{ marginBottom: 0 }}/>
-
-        </View>
-
+        <Button title='Add Items' onPress={props.addItemToList} />
+        
     </View>
 
 ); 

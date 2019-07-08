@@ -22,46 +22,46 @@ const DisplayContainer = (props) => {
 
         
 
-        <View  style={{ height: 300, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={ { flex: 1, alignItems: 'center' }}>
 
             <Card title='Display Options' containerStyle={{ height: 300, width: 300 }}>
 
-
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: 225 }}>
-                    
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: 225 }}>
+                        
                         <View style={{ width: 60, height: 50, alignItems: 'center', justifyContent:'center' }}>
                             <CheckBox checked={props.activeItems} onPress={props.activeItemsPressed} />
                         </View>
                         
                         <Text>Active Items</Text>
 
-                    </View>  
+                </View>  
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width:225 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width:225 }}>
 
-                        <View style={{ width: 60, height: 50, alignItems: 'center', justifyContent:'center' }}>
-                            <CheckBox checked={props.completedItems} onPress={props.completedItemsPressed} />
-                        </View>
-                    
-                        <Text>Completed Items </Text>
-
-                    </View>  
-
-                    <View style={{ alignItems: 'center', justifyContent: 'center', height: 40}}>
+                    <View style={{ width: 60, height: 50, alignItems: 'center', justifyContent:'center' }}>
+                        <CheckBox checked={props.completedItems} onPress={props.completedItemsPressed} />
+                    </View>
                 
-                        <Text>{leftItems} Items to be completed</Text>  
+                    <Text>Completed Items </Text>
 
-                    </View> 
+                </View>  
 
-                    <View style={{ paddingBottom:0, backgroundColor:'red' }}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', height: 40}}>
+            
+                    <Text style={{ fontSize: 15, fontWeight:'bold' }}>{leftItems} Items to be completed</Text>  
 
-                        <Button title='Display' onPress={props.toggleItems} containerStyle={{ paddingBottom: 0 }}/>
+                </View> 
 
-                    </View> 
+                <View style={{ paddingBottom:0 }}>
+
+                    <Button title='Display' onPress={props.toggleItems} containerStyle={{ paddingBottom: 0 }}/>
+
+                </View> 
+
 
             </Card>
-             
-           
+
+
         </View>
       
 

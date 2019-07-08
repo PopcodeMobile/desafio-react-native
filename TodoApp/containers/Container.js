@@ -117,6 +117,8 @@ class Container extends Component {
             this.setState({ itemList:itemListCopy });
         } 
 
+        alert('Item moved to completed list!');
+
     }
 
     addItemToList = () => {
@@ -136,6 +138,8 @@ class Container extends Component {
         this.setState({ 
             itemList: [...oldItemList, objItem], idCount: updatedIdCount
         });
+
+        alert('Item added!');
         
     }
 
@@ -215,7 +219,7 @@ class Container extends Component {
         return (
 
             <View style={ { flex: 1 } }>
-               
+
                 {display}
 
                {addContainer}

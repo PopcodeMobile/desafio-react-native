@@ -35,7 +35,8 @@ class Item extends Component {
    
     render () {
 
-        let fieldType =  <Text style={{ borderWidth:1 }} onPress={() => this.setState({ displayInput:true })}>{this.props.itemText} Due to {this.props.itemDate}</Text>;
+        let fieldType =  <View style={{ alignItems:'center'}}>
+                            <Text style={{ fontSize: 15, fontWeight:'bold' }}>{this.props.itemText} Due to {this.props.itemDate}</Text></View>;
     
         if(this.state.displayInput){
 
@@ -58,7 +59,14 @@ class Item extends Component {
 
                 <View key={this.props.itemElement.id}> 
 
-                   <Card title='Todo Item' image={require('../assets/todoicon.png')} >
+                   <Card title='Todo Item'>
+
+                        <View style={{ alignItems:'center', justifyContent:'center', paddingBottom:10}}>
+
+                            <Image source={require('../assets/todoicon.png')}
+                                style={{ width: 100, height: 100, borderRadius: 50 }}></Image>
+
+                        </View>
                     
                         {fieldType}
 
@@ -70,11 +78,18 @@ class Item extends Component {
                                         style={{ width: 20, height: 20 }}></Image>
                                     
                                 </TouchableOpacity>
+
+                                <TouchableOpacity onPress={() => this.setState({ displayInput:true })}>
+                                        
+                                        <Image source={require('../assets/todoicon.png')}
+                                            style={{ width: 20, height: 20 }}></Image>
+                                        
+                                </TouchableOpacity>
                     
                                 <TouchableOpacity onPress={this.showPicker}>
                                     
                                     <Image source={require('../assets/calendar-icon.png')}
-                                        style={{ width: 20, height: 20 }}></Image>
+                                        style={{ width: 22, height: 22 }}></Image>
                     
                                 </TouchableOpacity>
                     
