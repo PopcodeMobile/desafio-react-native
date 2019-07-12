@@ -1,0 +1,4 @@
+#Thu Jul 11 00:00:28 BRT 2019
+base.0=/home/howl/Documentos/Desenvolvimento/desafio/mobile/android/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex
