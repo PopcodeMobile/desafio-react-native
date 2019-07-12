@@ -13,4 +13,4 @@
 [Raul Andrade](https://github.com/andraderaul)
 
 ## Sobre a API
-Para executar a api localmente basta executar no terminal yarn dev
+Para executar a api localmente basta executar no terminal `yarn dev`
