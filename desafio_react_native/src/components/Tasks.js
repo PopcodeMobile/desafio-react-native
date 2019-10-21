@@ -19,21 +19,39 @@ export default props => {
     } else {
         check = <View style={styles.pending} />
     }
-    
+
     const descStyle = props.doneAt !== null ? { textDecorationLine: 'line-through' } : {};
 
-    return (
-        <View style={styles.container}>
-            <TouchableWithoutFeedback onPress={()=> props.toggleTask(props.id)}>
-            <View style={styles.checkContainer}>{check}</View>
-            </TouchableWithoutFeedback>
-            <View>
-                <Text style={[styles.description, descStyle]}>{props.desc}</Text>
-                <Text style={styles.date}>
-                {moment(props.estimatedAt).locale( 'pt-br').format( 'ddd, D [de] MMMM [de] YYYY')}
-                </Text>
-            </View>
+    const leftContent = (
+        <View style={styles.exclude}>
+            <Icon name='trash' size={20} color='#FFF'/>
+            <Text style={styles.excludeText}>Excluir</Text>
         </View>
+    )
+
+    const rightContent = [
+        <TouchableOpacity style={[styles.exclude, { justifyContent: 'flex-start', paddingLeft: 20 }]}
+            onPress={() => props.onDelete(props.id)}>
+            <Icon name='trash' size={30} color='#FFF' />
+        </TouchableOpacity>
+    ]
+
+    return (
+        <Swipeable leftActionActivationDistance={200}
+            onLeftActionActivate={() => props.onDelete(props.id)}
+            leftContent={leftContent} rightButtons={rightContent}>
+            <View style={styles.container}>
+                <TouchableWithoutFeedback onPress={() => props.onToggleTask(props.id)}>
+                    <View style={styles.checkContainer}>{check}</View>
+                </TouchableWithoutFeedback>
+                <View>
+                    <Text style={[styles.description, descStyle]}>{props.desc}</Text>
+                    <Text style={styles.date}>
+                        {moment(props.estimatedAt).locale('pt-br').format('ddd, D [de] MMMM [de] YYYY')}
+                    </Text>
+                </View>
+            </View>
+        </Swipeable>
 
     );
 }
@@ -69,10 +87,25 @@ const styles = StyleSheet.create({
         fontFamily: commonStyles.fontFamily,
         color: commonStyles.colors.mainText,
         fontSize: 15,
+        marginRight: 100,
+        
     },
     date: {
         fontFamily: commonStyles.fontFamily,
         color: commonStyles.colors.subText,
         fontSize: 12,
+    },
+    exclude: {
+        flex: 1,
+        backgroundColor: 'red',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
+    excludeText: {
+        fontFamily: commonStyles.fontFamily,
+        color: '#FFF',
+        fontSize: 20,
+        margin: 10,
     }
 });
