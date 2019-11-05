@@ -1,6 +1,6 @@
-[Thiago Sandes]
 
-# React Native - Coding Challenge
+
+# [Thiago Sandes] React Native - Coding Challenge
 
 We're looking for people who can build awesome products, so we created a set of open-ended challenges to test our candidates' overall developer skills.
 If you're interested in joining our team, complete this challenge and submit your pull request.
