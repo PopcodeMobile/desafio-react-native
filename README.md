@@ -1,3 +1,5 @@
+[Thiago Sandes]
+
 # React Native - Coding Challenge
 
 We're looking for people who can build awesome products, so we created a set of open-ended challenges to test our candidates' overall developer skills.
