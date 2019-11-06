@@ -2,10 +2,23 @@
 
 # [Thiago Sandes] React Native - Coding Challenge
 
+## References
+### React Native: Step by step guide to create a to do app 
+https://medium.com/salamcinema/react-native-step-by-step-guide-to-create-a-to-do-app-9fc8b95554f7 
+
+### How to build a real-time todo app with React Native
+https://www.freecodecamp.org/news/how-to-build-a-real-time-todo-app-with-react-native-19a1ce15b0b3/
+
+### Todo App with React Native
+https://hellokoding.com/todo-app-with-react-native/
+
+
+
+## Instructions
+
 We're looking for people who can build awesome products, so we created a set of open-ended challenges to test our candidates' overall developer skills.
 If you're interested in joining our team, complete this challenge and submit your pull request.
 
-## Instructions
 #### 1. Build your app
 You have 1 week to complete the challenge.
 
