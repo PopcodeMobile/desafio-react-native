@@ -14,7 +14,7 @@ class App extends React.Component {
         /** Cor da barra de status no IOS **/
         StatusBar.setBarStyle('light-content');
         /** Splash Screen **/
-        setTimeout(function(){SplashScreen.hide()}, 3000);
+        setTimeout(function(){SplashScreen.hide()}, 2000);
     }
 
     render() {
