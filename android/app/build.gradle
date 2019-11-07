@@ -102,7 +102,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.desafioreactnative"
+        applicationId "com.taskify"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -139,6 +139,7 @@ android {
 
 dependencies {
     implementation project(':react-native-vector-icons')
+    implementation project(':react-native-splash-screen')
     implementation project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"

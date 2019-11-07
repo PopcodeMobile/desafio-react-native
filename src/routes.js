@@ -3,7 +3,7 @@ import { createBottomTabNavigator, createAppContainer, createStackNavigator } fr
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ListTodos from './components/ListTodos';
-import PaperTodo from './components/PaperTodo';
+import TodoPanel from './components/TodoPanel';
 
 const FinishedScreen = {
     screen: ListTodos,
@@ -58,7 +58,7 @@ const Route = createStackNavigator({
 			headerTintColor: "#fff",
 		}
 	},
-	PaperTodo: PaperTodo,
+	TodoPanel: TodoPanel,
 });
 
 export default createAppContainer(Route);

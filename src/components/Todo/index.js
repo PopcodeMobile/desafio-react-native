@@ -21,7 +21,7 @@ const Todo = ({ item, navigation, markTodo, deleteTodo }) => (
       </View>
       <View style={styles.options}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("PaperTodo", { item: item })}
+          onPress={() => navigation.navigate("TodoPanel", { item: item })}
           style={styles.edit}
         >
           <EvilIcons

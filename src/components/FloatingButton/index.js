@@ -16,7 +16,7 @@ class AddButton extends Component {
 							top: 20,
 							bottom: 20,
 						}}
-						onPress={() => {this.props.navigation.navigate("PaperTodo", {item: ''})}}
+						onPress={() => {this.props.navigation.navigate("TodoPanel", {item: ''})}}
 					>
 						<View>
 							<FAwesomeIcon

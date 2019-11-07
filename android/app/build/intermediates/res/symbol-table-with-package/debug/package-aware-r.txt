@@ -1,4 +1,4 @@
-com.desafioreactnative
+com.taskify
 anim abc_fade_in
 anim abc_fade_out
 anim abc_grow_fade_in_from_bottom
@@ -400,6 +400,7 @@ color secondary_text_default_material_dark
 color secondary_text_default_material_light
 color secondary_text_disabled_material_dark
 color secondary_text_disabled_material_light
+color status_bar_color
 color switch_thumb_disabled_material_dark
 color switch_thumb_disabled_material_light
 color switch_thumb_material_dark
@@ -606,6 +607,7 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable launch_screen
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -814,6 +816,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout dev_loading_view
 layout fps_view
+layout launch_screen
 layout notification_action
 layout notification_action_tombstone
 layout notification_template_custom_big
@@ -1100,6 +1103,10 @@ style SpinnerDatePickerDialog
 style SpinnerDatePickerStyle
 style SpinnerTimePickerDialog
 style SpinnerTimePickerStyle
+style SplashScreenTheme
+style SplashScreen_Fullscreen
+style SplashScreen_SplashAnimation
+style SplashScreen_SplashTheme
 style TextAppearance_AppCompat
 style TextAppearance_AppCompat_Body1
 style TextAppearance_AppCompat_Body2
@@ -1314,5 +1321,4 @@ styleable Toolbar android_gravity android_minHeight buttonGravity collapseConten
 styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewStubCompat android_id android_layout android_inflatedId
-xml react_native_config
 xml rn_dev_preferences
