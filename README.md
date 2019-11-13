@@ -2,6 +2,10 @@
 
 # [Thiago Sandes] React Native - Coding Challenge
 
+## Demo
+### [Thiago Sandes] Popcode Challenge
+https://youtu.be/XrJtcIlX3XE
+
 ## References
 ### React Native: Step by step guide to create a to do app 
 https://medium.com/salamcinema/react-native-step-by-step-guide-to-create-a-to-do-app-9fc8b95554f7 
@@ -12,9 +16,6 @@ https://www.freecodecamp.org/news/how-to-build-a-real-time-todo-app-with-react-n
 ### Todo App with React Native
 https://hellokoding.com/todo-app-with-react-native/
 
-## Demo
-## [Thiago Sandes] Popcode Challenge
-https://youtu.be/XrJtcIlX3XE
 
 ## Instructions
 
