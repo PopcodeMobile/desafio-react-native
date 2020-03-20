@@ -1,0 +1,91 @@
+{
+  "name": "hugoToDo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "standard --verbose | snazzy",
+    "git-hook": "npm run lint -s && npm run test -s && yarn flow",
+    "fixcode": "standard --fix"
+  },
+  "dependencies": {
+    "@react-native-community/masked-view": "^0.1.7",
+    "@react-navigation/native": "^5.0.9",
+    "@react-navigation/stack": "^5.1.1",
+    "@reduxjs/toolkit": "^1.2.5",
+    "apisauce": "^1.1.1",
+    "ramda": "^0.27.0",
+    "react": "16.9.0",
+    "react-native": "0.61.5",
+    "react-native-gesture-handler": "^1.6.0",
+    "react-native-reanimated": "^1.7.0",
+    "react-native-safe-area-context": "^0.7.3",
+    "react-native-screens": "^2.2.0",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
+    "redux-saga": "^1.1.3",
+    "yup": "^0.28.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/runtime": "^7.8.7",
+    "@react-native-community/eslint-config": "^0.0.7",
+    "@storybook/react-native": "^5.3.17",
+    "babel-jest": "24.9.0",
+    "eslint": "^5.0.0",
+    "eslint-plugin-flowtype": "3.13.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "flow-bin": "^0.105.2",
+    "flow-typed": "^3.0.0",
+    "husky": "^4.2.3",
+    "jest": "24.9.0",
+    "lint-staged": "^10.0.8",
+    "metro-react-native-babel-preset": "^0.58.0",
+    "prettier": "^1.19.1",
+    "react-test-renderer": "16.9.0",
+    "reactotron-core-client": "2.5.0",
+    "reactotron-react-native": "4.0.3",
+    "reactotron-redux": "^3.1.2",
+    "reactotron-redux-saga": "^4.2.3",
+    "snazzy": "^8.0.0",
+    "standard": "^14.3.1",
+    "typescript": "^3.7.2"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [
+      "beforeAll",
+      "describe",
+      "test",
+      "it",
+      "jest",
+      "expect",
+      "fetch",
+      "navigator",
+      "__DEV__",
+      "XMLHttpRequest",
+      "FormData",
+      "React$Element"
+    ],
+    "ignore": [
+      "flow-typed/",
+      "ignite/Examples"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.js": [
+      "standard --fix",
+      "git add"
+    ]
+  },
+  "concurrent": false
+}
