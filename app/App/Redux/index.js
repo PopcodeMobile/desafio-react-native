@@ -3,18 +3,18 @@ import { combineReducers } from 'redux'
 import { updateReducers } from '../Config/ReduxPersist'
 import configureStore from './SetupStore'
 // import Features
-import UserFeature from '../Features/User'
+import ToDoFeature from '../Features/ToDo'
 
 // import Types
-import type { State as UserUIState } from '../Features/User/Redux/Ui'
-import type { State as UserEntityState } from '../Features/User/Redux/Entity'
+import type { State as ToDoUIState } from '../Features/ToDo/Redux/Ui'
+import type { State as ToDoEntityState } from '../Features/ToDo/Redux/Entity'
 
 const uiReducers = combineReducers({
-  user: UserFeature.reducers?.ui
+  toDos: ToDoFeature.reducers?.ui
 })
 
 const entityReducers = combineReducers({
-  user: UserFeature.reducers?.entities
+  toDos: ToDoFeature.reducers?.entities
 })
 
 const rootReducer = combineReducers({
@@ -31,9 +31,9 @@ export default () => {
 
 export type GlobalState = {
   ui: {
-    user: UserUIState
+    toDos: ToDoUIState
   },
   entities: {
-    user: UserEntityState
+    toDos: ToDoEntityState
   }
 }
