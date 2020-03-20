@@ -1,16 +1,14 @@
 // @flow
 import * as React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import HomeScreen from '../Containers/HomeScreen'
-import UserScreen from '../Features/User/Containers/UserScreen'
+import ToDoScreen from '../Features/ToDo/Containers/ToDoScreen'
 
 const Stack = createStackNavigator()
 
 function AppNavigation () {
   return (
-    <Stack.Navigator initialRouteName='Home'>
-      <Stack.Screen name='Home' component={HomeScreen} />
-      <Stack.Screen name='Profile' component={UserScreen} />
+    <Stack.Navigator initialRouteName='ToDo' headerMode='none'>
+      <Stack.Screen name='ToDo' component={ToDoScreen} />
     </Stack.Navigator>
   )
 }
