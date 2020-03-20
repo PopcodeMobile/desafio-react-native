@@ -10,7 +10,7 @@ const ReduxPersist = {
     key: 'primary',
     storage: AsyncStorage,
     stateReconciler: autoMergeLevel2,
-    whitelist: ['entities']
+    whitelist: []
   }
 }
 
