@@ -1,22 +1,22 @@
 // @flow
 import apisauce from 'apisauce'
 
-const create = (baseURL: string = 'https://api.github.com') => {
+const create = (baseURL: string = 'http://localhost:3000/') => {
   const api = apisauce.create({
     baseURL,
     timeout: 60000,
     headers: {}
   })
 
-  const getUser = (user: string) => api.get(`/users/${user}`)
+  const getToDos = () => api.get('/todos')
 
   return {
-    getUser
+    getToDos
   }
 }
 
 export type Api = {
-  getUser: (user: string) => Promise<*>
+  getToDos: () => Promise<*>
 }
 
 export default {
