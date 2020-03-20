@@ -1,12 +1,11 @@
 // @flow
 import timeout from '../Helpers/timeout'
 
-import UserFeature from '../Features/User'
+import ToDoFeature from '../Features/ToDo'
 
 export default {
-  getUser: async () => {
+  getToDos: async () => {
     await timeout(1000)
-    return { ok: true, data: UserFeature.fixtures?.success }
-    // return { ok: false, data: UserFeature.fixtures.failure }
+    return { ok: true, data: ToDoFeature.fixtures?.success }
   }
 }
