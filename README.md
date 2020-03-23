@@ -88,8 +88,8 @@ Vale lembrar que **não é obrigatório finalizar todas as tarefas listadas** aq
 	3. [Prioridade](https://invis.io/52U0WK0TNF8#/384998458) ✅
 5. Editar Tarefa
 	1. [Título](https://invis.io/52U0WK0TNF8#/384998462)
-	2. [Calendário](https://invis.io/52U0WK0TNF8#/)
-	3. [Prioridade](https://invis.io/52U0WK0TNF8#/)
+	2. [Calendário](https://invis.io/52U0WK0TNF8#/384998455)
+	3. [Prioridade](https://invis.io/52U0WK0TNF8#/384998458)
 	4. [Apagar](https://invis.io/52U0WK0TNF8#/384998460)
 	5. [Confirmar apagar](https://invis.io/52U0WK0TNF8#/384998461)
 6. Busca
@@ -136,4 +136,4 @@ Enquanto isso, conte-nos o que você achou do seu processo de recrutamento até 
 
 Muito obrigado pelo seu tempo e pelo seu interesse em fazer parte do nosso time!
 
-Agradecemos de coração ❤
+Agradecemos de coração ❤️
