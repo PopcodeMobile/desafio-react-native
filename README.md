@@ -30,7 +30,7 @@ O design completo do app está disponível em duas plataformas: [InVision](https
 ### Pré-requisitos
 
 * [Git](https://git-scm.com/): para clonar o repositório
-* [NodeJS](https://nodejs.org): para rodar a aplicação
+* [NodeJS](https://nodejs.org) (v10+): para rodar a aplicação
 * [Yarn](https://classic.yarnpkg.com/): para gerenciar pacotes
 * [Ambiente Android](https://reactnative.dev/docs/getting-started) (com React Native CLI): para executar o app
 
