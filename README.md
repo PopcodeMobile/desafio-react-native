@@ -52,10 +52,10 @@ $ yarn server
 
 A documentação estará disponível em `http://localhost:3000/explorer`
 
-Execute o app
+Em outra instância do terminal, execute o app
 ```
 $ cd app
-$ react-native run-android
+$ yarn android
 ```
 
 Agora, basta definir seu fluxo de trabalho para a implementação (ou refatoração) das tarefas abaixo.

@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "server": "cd server && npm start",
+    "setup:app": "cd app && yarn && cd ..",
     "setup:server": "git submodule init && git submodule update && cd server && npm install && cd ..",
-    "setup": "npm run setup:server",
+    "setup": "npm run setup:server && npm run setup:app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
