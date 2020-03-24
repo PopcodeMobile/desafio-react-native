@@ -26,6 +26,16 @@ Lembre-se, quanto mais claro seu código e suas decisões estiverem para o nosso
 ## Design
 O design completo do app está disponível em duas plataformas: [InVision](https://invis.io/52U0WK0TNF8) e [Figma](https://www.figma.com/proto/F95kJDtNqV2b2ioeS3YqTp/Pop-To-Do_Android).
 
+Para acessar o modo de _inspect_ nessas plataformas, você precisará estar logado. O modo inspect permite que você tenha acesso às medidas, margens e códigos de cores das telas do app. Para isto, basta utilizar os dados abaixo:
+
+[InVision](https://projects.invisionapp.com/d/login)
+* E-mail: `queroser@popcode.com.br`
+* Senha: `pq^iX9wGJsvs*z2DhhwTsynd`
+
+[Figma](https://www.figma.com)
+* E-mail: `queroser@popcode.com.br`
+* Senha: `nBMS$PU9mZ*kxoCVn2e20e8P`
+
 ## Desenvolvimento
 ### Pré-requisitos
 
@@ -50,7 +60,7 @@ Inicie o servidor para ter acesso a API, que ficará disponível no endereço `h
 $ yarn server
 ```
 
-A documentação estará disponível em `http://localhost:3000/explorer`
+Vale lembrar que algumas requisições serão bem sucedidas e outras não. O app deve estar preparado para ambos os cenários. A documentação completa estará disponível em `http://localhost:3000/explorer`.
 
 Em outra instância do terminal, execute o app
 ```
@@ -137,3 +147,9 @@ Enquanto isso, conte-nos o que você achou do seu processo de recrutamento até 
 Muito obrigado pelo seu tempo e pelo seu interesse em fazer parte do nosso time!
 
 Agradecemos de coração ❤️
+
+---
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licença Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+
+Este projeto foi feito com carinho pelas pessoas que fazem parte da Popcode. Você é livre para publicá-lo, desde que atribua os devidos créditos. Porém, seu uso comercial não é permitido. Você também poderá criar derivações em cima dele, contanto que ofereça uma licença igual ou compatível :)
