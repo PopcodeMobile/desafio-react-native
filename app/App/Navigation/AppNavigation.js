@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import ToDoScreen from '../Features/ToDo/Containers/ToDoScreen'
+import ToDoScreen from '../Features/ToDo/Containers/ToDoScreen/ToDoScreen'
 
 const Stack = createStackNavigator()
 
