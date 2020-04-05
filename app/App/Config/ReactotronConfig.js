@@ -7,16 +7,18 @@ import sagaPlugin from 'reactotron-redux-saga'
 let reactotron
 
 if (Config.useReactotron) {
-  reactotron = Reactotron.configure()
+  reactotron = Reactotron.configure({
+    host: '192.168.0.104'
+  })
     .setAsyncStorageHandler(AsyncStorage)
     .useReactNative()
     .use(reactotronRedux())
     .use(sagaPlugin())
     .connect()
 
-  Reactotron.clear()
+  reactotron.clear()
 
-  console.tron = Reactotron
+  console.tron = reactotron
 }
 
 export default reactotron
