@@ -1,5 +1,5 @@
 import API from './Api'
-import FixtureAPI from './FixtureApi'
+import FixtureAPI from './FixtureAPI.js'
 import R from 'ramda'
 
 test('All fixtures map to actual API', () => {
