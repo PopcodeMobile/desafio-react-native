@@ -1,5 +1,5 @@
 import React from 'react'
-import { ActivityIndicator, StyleSheet } from 'react-native'
+import { ActivityIndicator, StyleSheet, StatusBar } from 'react-native'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 
@@ -15,6 +15,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
+        <StatusBar barStyle="light-content" backgroundColor="#000"/>
         <RootContainer />
       </PersistGate>
     </Provider>
@@ -25,7 +26,6 @@ const App = () => {
 if (__DEV__) {
   import('./App/Config/ReactotronConfig').then(() => console.log('Reactotron Configured'))
 }
-
 
 export default Config.useStorybook ? StorybookUI : App
 
