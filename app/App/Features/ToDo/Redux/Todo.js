@@ -1,7 +1,8 @@
 import produce from 'immer'
 
 const INITIAL_STATE = {
-  todo: false
+  todo: false,
+  itemToDo: false
 };
 
 export default function todo(state = INITIAL_STATE, action) {
@@ -9,6 +10,10 @@ export default function todo(state = INITIAL_STATE, action) {
     switch (action.type) {
       case '@todo/SET_ALL': {
         draft.todo = action.payload.allToDo
+        break
+      }
+      case '@todo/SET_ITEM_TODO': {
+        draft.itemToDo = action.payload.itemToDo
         break
       }
       default:
