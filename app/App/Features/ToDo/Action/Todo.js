@@ -12,6 +12,21 @@ export function getAllToDo() {
   }
 }
 
+export function setItemToDo(itemToDo) {
+  return {
+    type: '@todo/SET_ITEM_TODO',
+    payload: { itemToDo }
+  }
+}
+
+export function deleteItemToDo(itemID) {
+  return {
+    type: '@todo/DELETE_ITEM_TODO',
+    payload: { itemID }
+  }
+}
+
+
 export function setAllToDo(allToDo) {
   return {
     type: '@todo/SET_ALL',
@@ -29,6 +44,13 @@ export function filterList(filter) {
 export function updateItemToDoIsDone(itemToDo) {
   return {
     type: '@todo/UPDATE_ITEM',
+    payload: { itemToDo }
+  }
+}
+
+export function updateItemToDo(itemToDo) {
+  return {
+    type: '@todo/UPDATE_ITEM_TODO',
     payload: { itemToDo }
   }
 }
