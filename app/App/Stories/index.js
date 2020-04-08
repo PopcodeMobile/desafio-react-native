@@ -1,3 +1,3 @@
 // Components Feature ToDo
-import '../Features/ToDo/Components/ToDo.story'
-import '../Features/ToDo/Components/TogglableText.story'
+import '../Features/ToDo/Components/ToDo/ToDo.story'
+import '../Features/ToDo/Components/TogglableText/TogglableText.story'
