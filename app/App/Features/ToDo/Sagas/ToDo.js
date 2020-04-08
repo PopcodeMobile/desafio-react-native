@@ -18,6 +18,28 @@ export function* addNewToDo({ payload }) {
   }
 }
 
+export function* updateItemToDoIsDone({ payload }) {
+  try {
+    const { itemToDo } = payload
+
+    if (!itemToDo) return
+
+    let item = {
+      description: itemToDo.description,
+      id: itemToDo.id,
+      title: itemToDo.title,
+      isDone: !itemToDo.isDone
+    }
+
+
+    yield call(apisauce.put, `/todos/${item.id}`, item)
+
+    return yield put(getAllToDo())
+  } catch (error) {
+    return
+  }
+}
+
 export function* getToDos() {
   try {
     const response = yield call(apisauce.get, '/todos')
