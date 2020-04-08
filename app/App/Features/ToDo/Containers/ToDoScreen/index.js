@@ -11,7 +11,7 @@ import EmptyListFromToDo from '../../Components/EmptyListFromToDo'
 import FilterListContainer from '../../Components/FilterListContainer'
 
 // actions
-import { getAllToDo, filterList, updateItemToDoIsDone } from '../../Action/Todo'
+import { getAllToDo, filterList, updateItemToDoIsDone, setItemToDo } from '../../Action/Todo'
 
 // styles
 import styles from './ToDoScreen.style'
@@ -60,7 +60,10 @@ const ToDoScreen = ({ navigation }) => {
             keyExtractor={(item, index) => `${item.id}-${index}-${item.title}`}
             renderItem={({ item }) => (
               <ToDo
-                onPressText={() => {}} 
+                onPressText={() => {
+                  dispatch(setItemToDo(item))
+                  navigation.navigate('UpdateItem')
+                }} 
                 toggleToDo={() => {
                   dispatch(updateItemToDoIsDone(item))
                 }}

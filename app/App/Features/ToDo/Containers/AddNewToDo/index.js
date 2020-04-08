@@ -20,6 +20,7 @@ export default function AddNewToDo ({ navigation }) {
   const selecPriority = ['none', 'low (!)', 'medium (!!)', 'high (!!!)']
 
   function handleNewTodo() {
+
     if (!title) return
 
     const newToDo = {
