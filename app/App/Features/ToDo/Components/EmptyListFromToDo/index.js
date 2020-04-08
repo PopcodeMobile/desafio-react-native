@@ -7,7 +7,7 @@ import styles from './styles'
 export default function EmptyListFromToDo () {
   return (
     <View style={styles.container}>
-      <Icon name='playlist-add-check' color='#000' size={42} />
+      <Icon name='panorama-fish-eye' color='#000' size={42} />
       <Text>Adicione um novo Lembrete</Text>
       <Text> tocando em '+'.</Text>
     </View>
