@@ -18,6 +18,36 @@ export function* addNewToDo({ payload }) {
   }
 }
 
+export function* deleteItem({ payload }) {
+  try {
+    const { itemID } = payload
+
+    if (!itemID) return
+
+    yield call(apisauce.delete, `/todos/${itemID}`)
+
+    return yield put(getAllToDo())
+  } catch (error) {
+    console.log(error);
+    
+    return
+  }
+}
+
+export function* updateItemToDo({ payload }) {
+  try {
+    const { itemToDo } = payload
+
+    if (!itemToDo) return
+
+    yield call(apisauce.put, `/todos/${itemToDo.id}`, itemToDo)
+
+    return yield put(getAllToDo())
+  } catch (error) {
+    return
+  }
+}
+
 export function* updateItemToDoIsDone({ payload }) {
   try {
     const { itemToDo } = payload
