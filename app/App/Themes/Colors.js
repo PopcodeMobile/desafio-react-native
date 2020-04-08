@@ -12,7 +12,8 @@ const colors = {
   d100: ['#1C64FF', '#0051FF'],
   d200: ['#FF9980', '#D24646'],
   d300: ['#2A2A2A', '#000000'],
-  d400: ['#FFFFFF', '#E3E4E6']
+  d400: ['#FFFFFF', '#E3E4E6'],
+  primary: '#03a9f4'
 }
 
 export default colors
