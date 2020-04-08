@@ -1,27 +1,20 @@
-// @flow
-import { configureStore } from '@reduxjs/toolkit'
-import Reactotron from '../Config/ReactotronConfig'
+
 import createSagaMiddleware from 'redux-saga'
-import { persistReducer } from 'redux-persist'
-import rootSaga from '../Sagas'
-import type { Reducer } from './Entities'
-import Config from '../Config/DebugConfig'
-import persistConfig from '../Config/ReduxPersist'
+import { persistStore } from 'redux-persist'
+import rootSaga from '../Features/ToDo/Sagas'
+import Reactotron from '../Config/ReactotronConfig'
+import DebugConfig from '../Config/DebugConfig'
+import persistReducer from './persistReducer'
+import createStore from './createStore'
+import rootReducer from './index'
 
-type Configuration = {
-  rootReducer: Reducer<any>
-}
 
-export default ({ rootReducer }: Configuration) => {
-  const sagaMonitor = Config.useReactotron ? Reactotron.createSagaMonitor() : null
-  const sagaMiddleware = createSagaMiddleware({ sagaMonitor })
+const sagaMonitor = DebugConfig.useReactotron ? Reactotron.createSagaMonitor() : null
+const sagaMiddleware = createSagaMiddleware({ sagaMonitor })
+const middleware = [sagaMiddleware]
 
-  const store = configureStore({
-    reducer: persistReducer(persistConfig.storeConfig, rootReducer),
-    middleware: [sagaMiddleware],
-    enhancers: Config.useReactotron ? [Reactotron.createEnhancer()] : null
-  })
+const store = createStore(persistReducer(rootReducer), middleware)
+const persistor = persistStore(store)
+sagaMiddleware.run(rootSaga)
 
-  sagaMiddleware.run(rootSaga)
-  return store
-}
+export { store, persistor }
