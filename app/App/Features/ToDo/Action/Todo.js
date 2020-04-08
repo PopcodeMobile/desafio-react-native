@@ -25,3 +25,10 @@ export function filterList(filter) {
     payload: { filter }
   }
 }
+
+export function updateItemToDoIsDone(itemToDo) {
+  return {
+    type: '@todo/UPDATE_ITEM',
+    payload: { itemToDo }
+  }
+}
