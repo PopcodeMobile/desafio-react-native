@@ -4,26 +4,28 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 
 import RootContainer from './App/Containers/RootContainer'
-import configureStore from './App/Redux'
+import { persistor, store } from './App/Redux/SetupStore'
 
 import StorybookUI from './storybook'
 import Config from './App/Config/DebugConfig'
 
-const { store, persistor } = configureStore()
+
 
 const App = () => {
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistor} loading={<ActivityIndicator size='large' style={styles.loading} />}>
+      <PersistGate persistor={persistor}>
         <RootContainer />
       </PersistGate>
     </Provider>
   )
 }
 
+
 if (__DEV__) {
   import('./App/Config/ReactotronConfig').then(() => console.log('Reactotron Configured'))
 }
+
 
 export default Config.useStorybook ? StorybookUI : App
 
