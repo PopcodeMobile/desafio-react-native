@@ -8,7 +8,8 @@ export default function EmptyListFromToDo () {
   return (
     <View style={styles.container}>
       <Icon name='playlist-add-check' color='#000' size={42} />
-      <Text>Empty list.</Text>
+      <Text>Adicione um novo Lembrete</Text>
+      <Text> tocando em '+'.</Text>
     </View>
   )
 }
