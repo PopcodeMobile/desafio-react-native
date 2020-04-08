@@ -3,11 +3,10 @@ import { Colors } from '../../../../Themes'
 
 const styles = StyleSheet.create({
   background: {
-    // flex: 1,
+    flex: 1,
     justifyContent: 'flex-end'
   },
   tasksContainer: {
-    // zIndex: 1,
     height: '80%',
     backgroundColor: Colors.a420,
     borderTopLeftRadius: 32,
@@ -28,7 +27,7 @@ const styles = StyleSheet.create({
     marginRight: '10%',
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 40,
+    fontSize: 30,
     marginBottom: '10%'
   },
   containerTitle: {
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
     color: '#bdbdbd'
   },
   buttonAdd: {
-    backgroundColor: '#0277bd',
+    backgroundColor: Colors.primary,
     padding: '04%',
     marginTop: '10%',
     marginLeft: '30%',
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
   },
   buttonAddText: {
     fontSize: 20,
-    color: '#9e9e9e'
+    color: '#FFF'
   }
 })
 
