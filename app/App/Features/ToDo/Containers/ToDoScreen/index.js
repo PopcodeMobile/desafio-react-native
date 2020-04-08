@@ -11,7 +11,7 @@ import EmptyListFromToDo from '../../Components/EmptyListFromToDo'
 import FilterListContainer from '../../Components/FilterListContainer'
 
 // actions
-import { getAllToDo, filterList } from '../../Action/Todo'
+import { getAllToDo, filterList, updateItemToDoIsDone } from '../../Action/Todo'
 
 // styles
 import styles from './ToDoScreen.style'
@@ -42,8 +42,6 @@ const ToDoScreen = ({ navigation }) => {
 
   useEffect(() => {
     dispatch(getAllToDo())
-    console.log(allToDo);
-    
   }, [])
 
   return (
@@ -61,7 +59,14 @@ const ToDoScreen = ({ navigation }) => {
             data={allToDo}
             keyExtractor={(item, index) => `${item.id}-${index}-${item.title}`}
             renderItem={({ item }) => (
-              <ToDo onPressText={() => {}} toggleToDo={() => {}} text={item.title} toggled={item.isDone} />
+              <ToDo
+                onPressText={() => {}} 
+                toggleToDo={() => {
+                  dispatch(updateItemToDoIsDone(item))
+                }}
+                text={item.title}
+                toggled={item.isDone}
+              />
             )}
           />
         ) : (
