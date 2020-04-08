@@ -12,23 +12,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 32,
     paddingHorizontal: 16,
     paddingVertical: 12
-  },
-  filterContainer: {
-    paddingVertical: 12,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 10
-  },
-  floatingButton: {
-    position: 'absolute',
-    right: 24,
-    bottom: 58,
-    height: 64,
-    width: 64,
-    borderRadius: 20,
-    backgroundColor: Colors.a220,
-    justifyContent: 'center',
-    alignItems: 'center'
   }
 })
 
