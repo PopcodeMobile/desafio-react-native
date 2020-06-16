@@ -50,8 +50,9 @@ Clone (ou faça um fork) o repositório do desafio
 $ git clone https://github.com/PopcodeMobile/desafio-react-native.git
 ```
 
-Instale as dependências
+Entre no diretório do projeto e instale as dependências
 ```
+$ cd desafio-react-native
 $ yarn setup
 ```
 
@@ -77,7 +78,9 @@ As tarefas marcadas com um ✅ já estão prontas, mas podem ser reestruturadas 
 
 Vale lembrar que **não é obrigatório finalizar todas as tarefas listadas** aqui. Nós não exigiremos, por exemplo, que uma pessoa candidata a uma vaga de estágio complete todos os itens do desafio. Nesta etapa do processo, o mais importante é entregar o melhor trabalho possível dentro do prazo que a gente combinou em nossa última conversa. A lista é apenas um guia para que todos os envolvidos no processo (recrutadores e candidatos) possam conhecer os critérios utilizados para avaliação de maneira clara e transparente (mais detalhes na próxima seção).
 
+<!-- Trecho retirado até que tenhamos o link da central de talentos funcionando no novo site da Popcode
 *Nunca conversou com a gente? Acesse nossa [central de talentos](https://popcode.com.br/carreira) :)*
+-->
 
 1. Início
 	1. [Cenário de carregamento](https://invis.io/52U0WK0TNF8#/384998463)
