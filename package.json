@@ -1,0 +1,32 @@
+{
+  "name": "desafio-react-native",
+  "version": "2.0.0",
+  "description": "Popcode React Native Code Challenge",
+  "main": "index.js",
+  "scripts": {
+    "server": "cd server && npm start",
+    "setup:app": "cd app && yarn && cd ..",
+    "setup:server": "git submodule init && git submodule update && cd server && npm install && cd ..",
+    "setup": "npm run setup:server && npm run setup:app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PopcodeMobile/desafio-react-native.git"
+  },
+  "keywords": [
+    "Popcode",
+    "Mobile",
+    "Solutions",
+    "React",
+    "Native",
+    "Code",
+    "Challenge"
+  ],
+  "author": "Popcode",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PopcodeMobile/desafio-react-native/issues"
+  },
+  "homepage": "https://github.com/PopcodeMobile/desafio-react-native#readme"
+}
