@@ -32,6 +32,8 @@ Para acessar o modo de _inspect_ nessas plataformas, você precisará estar loga
 * E-mail: `queroser@popcode.com.br`
 * Senha: `pq^iX9wGJsvs*z2DhhwTsynd`
 
+**OBS.:** Se após o login, aparecer uma tela para selecionar um time, selecione a opção *Personal*
+
 [Figma](https://www.figma.com)
 * E-mail: `queroser@popcode.com.br`
 * Senha: `nBMS$PU9mZ*kxoCVn2e20e8P`
