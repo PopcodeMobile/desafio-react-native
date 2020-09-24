@@ -1,8 +1,8 @@
 // @flow
-import React from 'react'
-import { TouchableOpacity, Text } from 'react-native'
-import styles from './TogglableText.style'
-import Colors from '../../../Themes/Colors'
+import React from 'react';
+import { TouchableOpacity, Text } from 'react-native';
+import styles from './TogglableText.style';
+import Colors from '../../../Themes/Colors';
 
 type Props = {
   text: string,
@@ -19,7 +19,7 @@ const TogglableText = ({ text, onPressText, toggled }: Props) => {
     >
       <Text style={[styles.text, toggled && { color: Colors.a420, fontWeight: 'bold' }]}>{text}</Text>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
-export default TogglableText
+export default TogglableText;

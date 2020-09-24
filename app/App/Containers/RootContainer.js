@@ -1,8 +1,8 @@
 // @flow
-import React from 'react'
-import { View } from 'react-native'
-import AppNavigation from '../Navigation/AppNavigation'
-import { NavigationContainer } from '@react-navigation/native'
+import React from 'react';
+import { View } from 'react-native';
+import AppNavigation from '../Navigation/AppNavigation';
+import { NavigationContainer } from '@react-navigation/native';
 
 const RootContainer = () => {
   return (
@@ -11,7 +11,7 @@ const RootContainer = () => {
         <AppNavigation />
       </NavigationContainer>
     </View>
-  )
-}
+  );
+};
 
-export default RootContainer
+export default RootContainer;

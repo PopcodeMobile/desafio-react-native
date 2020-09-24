@@ -1,14 +1,14 @@
 // @flow
-import ToDoScreen from './Containers/ToDoScreen'
-import type { Feature } from '../../Entities/Feature'
+import ToDoScreen from './Containers/ToDoScreen';
+import type { Feature } from '../../Entities/Feature';
 
-import toDosEntityReducer from './Redux/Entity'
-import toDosUiReducer from './Redux/Ui'
+import toDosEntityReducer from './Redux/Entity';
+import toDosUiReducer from './Redux/Ui';
 
-import successFixture from './Fixtures/getToDosSuccess'
-import failureFixture from './Fixtures/getToDosFailure'
+import successFixture from './Fixtures/getToDosSuccess';
+import failureFixture from './Fixtures/getToDosFailure';
 
-import toDosSagas from './Sagas'
+import toDosSagas from './Sagas';
 
 const feature: Feature = {
   screens: {
@@ -23,6 +23,6 @@ const feature: Feature = {
     success: successFixture,
     failure: failureFixture
   }
-}
+};
 
-export default feature
+export default feature;

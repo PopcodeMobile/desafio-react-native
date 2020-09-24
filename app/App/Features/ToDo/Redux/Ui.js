@@ -1,16 +1,16 @@
 // @flow
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import type { Error } from '../../../Entities/Error'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import type { Error } from '../../../Entities/Error';
 
 export type State = {
   fetching: boolean,
   error: ?string
-}
+};
 
 const INITIAL_STATE: State = {
   fetching: false,
   error: null
-}
+};
 
 const toDoUiSlice = createSlice({
   name: 'userUI',
@@ -32,8 +32,8 @@ const toDoUiSlice = createSlice({
       error: null
     })
   }
-})
+});
 
-export const { actions } = toDoUiSlice
+export const { actions } = toDoUiSlice;
 
-export default toDoUiSlice.reducer
+export default toDoUiSlice.reducer;

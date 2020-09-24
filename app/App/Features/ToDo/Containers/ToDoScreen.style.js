@@ -1,43 +1,43 @@
-import { StyleSheet } from 'react-native'
-import { Colors } from '../../../Themes'
+import { StyleSheet } from 'react-native';
+import { Colors } from '../../../Themes';
 
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginHorizontal: 24,
-    marginBottom: 24
+    marginBottom: 24,
   },
   displayDateName: {
     color: Colors.a420,
     fontSize: 34,
     lineHeight: 41,
     letterSpacing: 0.37,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   date: {
     color: Colors.c400,
     fontSize: 15,
     lineHeight: 20,
-    letterSpacing: -0.24
+    letterSpacing: -0.24,
   },
   tasksContainer: {
     height: '70%',
     backgroundColor: Colors.a420,
     borderTopLeftRadius: 32,
     paddingHorizontal: 16,
-    paddingVertical: 12
+    paddingVertical: 12,
   },
   filterContainer: {
     paddingVertical: 12,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 10
+    marginBottom: 10,
   },
   searchContainer: {
     height: 44,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     borderRadius: 44 / 2,
     backgroundColor: Colors.a420,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   floatingButton: {
     position: 'absolute',
@@ -56,8 +56,107 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: Colors.a220,
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: '#000000aa',
+  },
+  viewModal: {
+    backgroundColor: '#ffffff',
+    marginTop: 180,
+    padding: 40,
+    borderTopLeftRadius: 32,
+    borderTopRightRadius: 32,
+    flex: 1,
+  },
+  closeModalButton: {
+    position: 'absolute',
+    height: 24,
+    right: 20,
+    top: 18,
+    justifyContent: 'center',
     alignItems: 'center'
-  }
-})
+  },
+  textInputMain: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 30,
+    paddingLeft: 30,
+    fontWeight: 'bold',
+    borderStyle: 'solid',
+    borderBottomWidth: 2,
+    borderBottomColor: '#E3E4E6',
+  },
+  textInputSide: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: 30,
+    fontSize: 20,
+    borderStyle: 'solid',
+    borderBottomWidth: 2,
+    borderBottomColor: '#E3E4E6',
+  },
+  floatingButtonAdd: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 20,
+    alignSelf: 'center',
+    width: 200,
+    height: 50,
+    borderRadius: 15,
+    backgroundColor: Colors.a220,
+  },
+  floatingButtonDel: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 20,
+    alignSelf: 'center',
+    width: 200,
+    height: 50,
+    borderRadius: 15,
+    backgroundColor: '#E3645B'
+  },
+  textFloatingButtonAdd: {
+    alignItems: 'center',
+    color: '#ffffff',
+    fontSize: 18,
+  },
+  modalSearch: {
+    height: '88%',
+    position: 'absolute',
+    backgroundColor: Colors.a420,
+    paddingHorizontal: 16,
+    paddingVertical: 12
+  },
+  inputSearch: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: 45,
+    backgroundColor: '#45484D',
+    borderRadius: 24,
+    opacity: 0.9,
+    position: 'absolute',
+    width: 303,
+    height: 48,
+    left: 56,
+    top: 20,
+  },
+  arrowLeft: {
+    position: 'absolute',
+    top: 32,
+    paddingLeft: 20
+  },
+  iconSearch: {
+    position: 'absolute',
+    top: 32,
+    color: '#FFFFFF',
+    left: 70,
+    opacity: 0.9,
+  },
+});
 
-export default styles
+export default styles;
