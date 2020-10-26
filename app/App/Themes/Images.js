@@ -15,9 +15,6 @@ const Images = {
   },
   flag: {
     '24px': require('../Images/bandeira.png')
-  },
-  sol: {
-    '36px': require('../Images/sol_84px.png')
   }
 }
 

@@ -3,7 +3,7 @@ import * as React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import ToDoScreen from '../Features/ToDo/Containers/ToDoScreen'
 
-const Stack = createStackNavigator() //uma tela em cima da outra
+const Stack = createStackNavigator()
 
 function AppNavigation () {
   return (

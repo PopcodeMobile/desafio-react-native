@@ -8,9 +8,3 @@ export type ToDoType = {
   reminder: string,
   priority: string
 }
-
-export type ToDoAdd = {
-  title?: string,
-  reminder?: string,
-  priority?: String, 
-} | null
