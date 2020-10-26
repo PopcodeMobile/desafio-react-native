@@ -17,7 +17,8 @@ const toDoEntitySlice = createSlice({
     addToDos: (state: State, action: PayloadAction) => {
       const toDoList = action.payload
       return toDoList
-    }
+    }, 
+    
   }
 })
 

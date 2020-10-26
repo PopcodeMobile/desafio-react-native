@@ -48,19 +48,9 @@ const ToDoScreen = ({ navigation }: Props) => {
     getToDos()
   }, [])
 
-
   // Consts
   const filterList = ['All', 'Today', 'This week', 'This month']
   console.tron.logImportant({sortedToDos,fetching,error})
-
-  //Add
-  //const [texts,setText] = useState(item || null)
-  /*const [todo, setTodo] = useState ({title:null, reminder:null,priority: null})
-
-  function setTitle(title:String){
-    setText({...texts, title})
-  }
-  */
 
   return (
     <ImageBackground source={Images.appBackground} style={styles.background}>
