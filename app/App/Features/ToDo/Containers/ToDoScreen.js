@@ -1,31 +1,26 @@
 // @flow
 import React, { useCallback, useState, useEffect } from 'react'
-import { View, Text, ImageBackground, Image, TouchableOpacity, FlatList, ActivityIndicator, Modal, Picker } from 'react-native'
+import { View, Text, TextInput, ImageBackground, Image, TouchableOpacity, FlatList, ActivityIndicator, Modal, Picker } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 
 import ToDo from '../Components/ToDo'
 import TogglableText from '../Components/TogglableText'
 
 import { actions as ToDosUIActions } from '../Redux/Ui'
-import ToDoEntitySelectors from '../Selectors/Entity'
-import ToDoUISelections, { fetching } from '../Selectors/Ui'
+import ToDoEntitySelectors from '../Selectors/Entity' //obs
+import ToDoUISelections, { fetching } from '../Selectors/Ui' //obs
 
 import styles from './ToDoScreen.style'
 import { Images } from '../../../Themes'
 
 import type { StackNavigationProp } from '@react-navigation/stack'
 
-import moment from 'moment' //data-hora
-import { TextInput } from 'react-native-gesture-handler'
+import moment from 'moment'
 import colors from '../../../Themes/Colors'
-import { values } from 'lodash'
-
-
 
 type Props = {
   navigation: StackNavigationProp
 }
-
 
 const ToDoScreen = ({ navigation }: Props) => {
   // Redux Actions
@@ -35,8 +30,7 @@ const ToDoScreen = ({ navigation }: Props) => {
   // State
  const [selectedFilterIndex, setFilterIndex] = useState(0)
  const [add, setAdd] = useState(false)
- const [open, setOpen] = useState(false)
- const [date, setDate] = useState(new Date())
+ const [isOpenScreenAdd, setIsOpenScreenAdd] = useState(false)
 
   // Selectors
   const sortedToDos = useSelector(ToDoEntitySelectors.sortedToDos)
@@ -50,7 +44,6 @@ const ToDoScreen = ({ navigation }: Props) => {
 
   // Consts
   const filterList = ['All', 'Today', 'This week', 'This month']
-  console.tron.logImportant({sortedToDos,fetching,error})
 
   return (
     <ImageBackground source={Images.appBackground} style={styles.background}>
@@ -67,11 +60,11 @@ const ToDoScreen = ({ navigation }: Props) => {
         error = {error}
       />
       </View>
-      <FloatingButton onPress={() => setOpen(true)} />
-      <Modal transparent={true} visible ={open} animationType="slide">
+      <FloatingButton onPress={() => setIsOpenScreenAdd(true)} />
+      <Modal transparent={true} visible ={isOpenScreenAdd} animationType="slide">
         <View style={styles.container}>
           <View style={styles.flexModalContainer}>
-            <CloseButton onPress = {() => setOpen(false)}/>
+            <CloseButton onPress = {() => setIsOpenScreenAdd(false)}/>
             <TextInput style={styles.textInput} placeholder='Novo Lembrete' placeholderTextColor ={colors.c600}/>
             <AddDate/>
             <PriorityList/>

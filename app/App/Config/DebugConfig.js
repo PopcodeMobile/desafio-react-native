@@ -1,5 +1,5 @@
 export default {
   useReactotron: __DEV__,
-  useFixtures: true, 
+  useFixtures: false, 
   useStorybook: false,
 }
