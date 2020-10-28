@@ -12,8 +12,15 @@ const INITIAL_STATE: State = {
   error: null
 }
 
+type setSelectedFilterIndexAction = {
+  type: string,
+  payload: {
+    index: number
+  }
+}
+
 const toDoUiSlice = createSlice({
-  name: 'userUI',
+  name: 'ui',
   initialState: INITIAL_STATE,
   reducers: {
     request: (state: State) => ({
@@ -30,7 +37,10 @@ const toDoUiSlice = createSlice({
       ...state,
       fetching: false,
       error: null
-    })
+    }),
+    setSelectedFilterIndex: (state: State, action: setSelectedFilterIndexAction) => {
+      state.selectedFilterIndex = action.payload.index
+    }
   }
 })
 

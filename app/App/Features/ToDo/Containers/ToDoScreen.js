@@ -1,14 +1,16 @@
 // @flow
-import React, { useCallback, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, TextInput, ImageBackground, Image, TouchableOpacity, FlatList, ActivityIndicator, Modal, Picker } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 
 import ToDo from '../Components/ToDo'
 import TogglableText from '../Components/TogglableText'
 
-import { actions as ToDosUIActions } from '../Redux/Ui'
+import { actions as UIActions } from '../Redux/Ui'
+import { actions as EntityActions} from '../Redux/Entity'
+
 import ToDoEntitySelectors from '../Selectors/Entity' //obs
-import ToDoUISelections, { fetching } from '../Selectors/Ui' //obs
+import ToDoUISelections from '../Selectors/Ui' //obs
 
 import styles from './ToDoScreen.style'
 import { Images } from '../../../Themes'
@@ -20,6 +22,7 @@ import type { StackNavigationProp } from '@react-navigation/stack'
 import MomentConfig from '../../../Config/MomentConfig'
 import moment from 'moment'
 import colors from '../../../Themes/Colors'
+import lodash from 'lodash'
 
 type Props = {
   navigation: StackNavigationProp
@@ -31,7 +34,7 @@ MomentConfig.setLanguage()
 const ToDoScreen = ({ navigation }: Props) => {
   // Redux Actions
   const dispatch = useDispatch()
-  const getToDos = useCallback(() => dispatch(ToDosUIActions.request()))
+  //const getToDos = useCallback(() => dispatch(ToDosUIActions.request()))
 
   // State
  const [selectedFilterIndex, setFilterIndex] = useState(0)
@@ -40,13 +43,16 @@ const ToDoScreen = ({ navigation }: Props) => {
 
   // Selectors
   const sortedToDos = useSelector(ToDoEntitySelectors.sortedToDos)
+  //const selectedFilterIndex = useSelector(ToDoUISelections.selectedFilterIndex)
   const fetching = useSelector(ToDoUISelections.fetching)
   const error = useSelector(ToDoUISelections.error)
 
   // Lifecycle Methods
   useEffect(() => {
-    getToDos()
-  }, [])
+    dispatch(UIActions.request())
+  }, [dispatch])
+
+  useEffect (() => {})
 
   return (
     <ImageBackground source={Images.appBackground} style={styles.background}>
@@ -61,6 +67,7 @@ const ToDoScreen = ({ navigation }: Props) => {
         sortedToDos = {sortedToDos}
         fetching = {fetching}
         error = {error}
+        dispatch = {dispatch}
       />
       </View>
       <FloatingButton onPress={() => setIsOpenScreenAdd(true)} />
@@ -107,7 +114,7 @@ const FilterListContainer = ({ filterList, selectedFilter, onPressFilter }) => (
   </View>
 )
 
-const ListContainer = ({sortedToDos,fetching,error}) => (
+const ListContainer = ({sortedToDos,fetching,error,dispatch}) => (
   <>
     {!!fetching && 
       <View style = {styles.fetchingCircle}>
@@ -121,7 +128,9 @@ const ListContainer = ({sortedToDos,fetching,error}) => (
           data={sortedToDos}
           keyExtractor={(item, index) => `${item.id}-${index}-${item.title}`}
           renderItem={({ item }) => (
-            <ToDo onPressText={() => {}} toggleToDo={() => {console.warn(item.isDone)}} text={item.title} toggled={item.isDone} />
+            <ToDo onPressText={() => {}} toggleToDo={() => {
+              dispatch(EntityActions.toggleToDo({id: item.id}))}} 
+              text={item.title} toggled={item.isDone} />
           )}
         />
         </>
