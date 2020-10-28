@@ -13,14 +13,20 @@ import ToDoUISelections, { fetching } from '../Selectors/Ui' //obs
 import styles from './ToDoScreen.style'
 import { Images } from '../../../Themes'
 
+import { Filters } from '../Constants'
+
 import type { StackNavigationProp } from '@react-navigation/stack'
 
+import MomentConfig from '../../../Config/MomentConfig'
 import moment from 'moment'
 import colors from '../../../Themes/Colors'
 
 type Props = {
   navigation: StackNavigationProp
 }
+
+//Tranlate Moment 
+MomentConfig.setLanguage()
 
 const ToDoScreen = ({ navigation }: Props) => {
   // Redux Actions
@@ -42,15 +48,12 @@ const ToDoScreen = ({ navigation }: Props) => {
     getToDos()
   }, [])
 
-  // Consts
-  const filterList = ['All', 'Today', 'This week', 'This month']
-
   return (
     <ImageBackground source={Images.appBackground} style={styles.background}>
       <HeaderContainer onPressSearch={() => {}} />
       <View style={styles.tasksContainer}>
         <FilterListContainer
-          filterList={filterList}
+          filterList={Filters}
           selectedFilter={selectedFilterIndex} //--
           onPressFilter={setFilterIndex}
         />
@@ -79,7 +82,7 @@ const ToDoScreen = ({ navigation }: Props) => {
 const HeaderContainer = ({ onPressSearch }) => (
   <View style={styles.headerContainer}>
     <View>
-      <Text style={styles.displayDateName}>Today</Text>
+      <Text style={styles.displayDateName}>Hoje</Text>
       <Text style={styles.date}>{moment().format('dddd, DD MMMM')}</Text>
     </View>
     <TouchableOpacity activeOpacity={0.7} onPress={onPressSearch} style={styles.searchContainer}>
