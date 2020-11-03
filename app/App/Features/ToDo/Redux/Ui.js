@@ -4,12 +4,14 @@ import type { Error } from '../../../Entities/Error'
 
 export type State = {
   fetching: boolean,
-  error: ?string
+  error: ?string,
+  selectedFilterIndex: number
 }
 
 const INITIAL_STATE: State = {
   fetching: false,
-  error: null
+  error: null,
+  selectedFilterIndex: 0
 }
 
 type setSelectedFilterIndexAction = {

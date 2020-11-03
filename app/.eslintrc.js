@@ -5,5 +5,13 @@ module.exports = {
     react: {
       version: 'detect'
     }
+  },
+  extends: {
+    '@react-native-comunity',
+    "plugin:prettier/recommended"
+  },
+  plugins: ["prettier"],
+  rules: {
+    "prettier/prettier":"error"
   }
 }

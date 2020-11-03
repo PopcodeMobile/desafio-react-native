@@ -22,7 +22,6 @@ import type { StackNavigationProp } from '@react-navigation/stack'
 import MomentConfig from '../../../Config/MomentConfig'
 import moment from 'moment'
 import colors from '../../../Themes/Colors'
-import lodash from 'lodash'
 
 type Props = {
   navigation: StackNavigationProp
@@ -37,13 +36,13 @@ const ToDoScreen = ({ navigation }: Props) => {
   //const getToDos = useCallback(() => dispatch(ToDosUIActions.request()))
 
   // State
- const [selectedFilterIndex, setFilterIndex] = useState(0)
  const [add, setAdd] = useState(false)
  const [isOpenScreenAdd, setIsOpenScreenAdd] = useState(false)
 
   // Selectors
-  const sortedToDos = useSelector(ToDoEntitySelectors.sortedToDos)
-  //const selectedFilterIndex = useSelector(ToDoUISelections.selectedFilterIndex)
+  const filteredToDos = useSelector(ToDoEntitySelectors.filteredToDos)
+  const isEmpty = useSelector(ToDoEntitySelectors.isEmpty)
+  const selectedFilterIndex = useSelector(ToDoUISelections.selectedFilterIndex)
   const fetching = useSelector(ToDoUISelections.fetching)
   const error = useSelector(ToDoUISelections.error)
 
@@ -52,8 +51,6 @@ const ToDoScreen = ({ navigation }: Props) => {
     dispatch(UIActions.request())
   }, [dispatch])
 
-  useEffect (() => {})
-
   return (
     <ImageBackground source={Images.appBackground} style={styles.background}>
       <HeaderContainer onPressSearch={() => {}} />
@@ -61,10 +58,10 @@ const ToDoScreen = ({ navigation }: Props) => {
         <FilterListContainer
           filterList={Filters}
           selectedFilter={selectedFilterIndex} //--
-          onPressFilter={setFilterIndex}
+          onPressFilter={index => dispatch(UIActions.setSelectedFilterIndex({index}))}
         />
       <ListContainer
-        sortedToDos = {sortedToDos}
+        filteredToDos = {filteredToDos}
         fetching = {fetching}
         error = {error}
         dispatch = {dispatch}
@@ -99,33 +96,35 @@ const HeaderContainer = ({ onPressSearch }) => (
 )
 
 const FilterListContainer = ({ filterList, selectedFilter, onPressFilter }) => (
-  <View style={styles.filterContainer}>
-    <FlatList
-      bounces={false}
-      keyboardShouldPersistTaps='handled'
-      showsHorizontalScrollIndicator={false}
-      horizontal
-      data={filterList}
-      keyExtractor={(item, index) => `${index}-${item}`}
-      renderItem={({ item, index }) => (
-        <TogglableText toggled={selectedFilter === index} text={item} onPressText={() => onPressFilter(index)} />
-      )}
-    />
-  </View>
+      <View style={styles.filterContainer}>
+        <FlatList
+          bounces={false}
+          keyboardShouldPersistTaps='handled'
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          data={filterList}
+          keyExtractor={(item, index) => `${index}-${item}`}
+          renderItem={({ item, index }) => (
+            <TogglableText 
+              toggled={selectedFilter === index} text={item} onPressText={() => onPressFilter(index)} 
+            />
+          )}
+        />
+      </View>
 )
 
-const ListContainer = ({sortedToDos,fetching,error,dispatch}) => (
+const ListContainer = ({filteredToDos,fetching,error,dispatch}) => (
   <>
     {!!fetching && 
       <View style = {styles.fetchingCircle}>
         <ActivityIndicator size="large" color = "#000"/>
       </View> 
     }
-    {Object.entries(sortedToDos).length == 0 ? <EmptyContainer/> : 
+    {Object.entries(filteredToDos).length == 0 ? <EmptyContainer/> : 
         <>
         <FlatList
           style={{ marginLeft: 12 }}
-          data={sortedToDos}
+          data={filteredToDos}
           keyExtractor={(item, index) => `${item.id}-${index}-${item.title}`}
           renderItem={({ item }) => (
             <ToDo onPressText={() => {}} toggleToDo={() => {

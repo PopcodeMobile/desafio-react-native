@@ -16,6 +16,13 @@ type ToggleToDoAction = {
   }
 }
 
+type AddToDoAction = {
+  type: string,
+  payload: {
+    item: ToDo
+  }
+}
+
 const toDoEntitySlice = createSlice({
   name: 'entity',
   initialState: INITIAL_STATE,
@@ -27,6 +34,10 @@ const toDoEntitySlice = createSlice({
     toggleToDo: (state: State, action: ToggleToDoAction) => {
       const index = action.payload.id - 1
       state[index].isDone = !state[index].isDone
+    },
+    addToDo: (state : State, action: AddToDoAction) => {
+      const item = action.payload.item
+      return [...state, item]
     }
   }
 })
@@ -34,3 +45,9 @@ const toDoEntitySlice = createSlice({
 export const { actions } = toDoEntitySlice
 
 export default toDoEntitySlice.reducer
+
+/* Reducers 
+reducer : function(estadoAnterior, ação){
+  return proximoEstado
+}
+*/
