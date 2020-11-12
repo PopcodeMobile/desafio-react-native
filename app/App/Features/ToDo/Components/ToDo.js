@@ -11,6 +11,7 @@ type Props = {
   toggleToDo: () => mixed
 }
 
+
 const ToDo = ({ text, onPressText, toggled, toggleToDo }: Props) => {
   return (
     <View style={styles.container}>

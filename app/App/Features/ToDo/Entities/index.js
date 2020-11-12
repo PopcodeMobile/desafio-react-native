@@ -1,10 +1,10 @@
 // @flow
 
-export type ToDoType = {
+export type ToDo = {
   id: number,
   title: string,
   description: string,
-  isDone: true,
-  reminder: string,
-  priority: string
+  isDone: boolean,
+  reminder?: string,
+  priority?: string
 }
