@@ -1,7 +1,7 @@
 // @flow
 import apisauce from 'apisauce'
 
-const create = (baseURL: string = 'http://localhost:3000/') => {
+const create = (baseURL: string = 'http://192.168.3.234:3000') => {
   const api = apisauce.create({
     baseURL,
     timeout: 60000,

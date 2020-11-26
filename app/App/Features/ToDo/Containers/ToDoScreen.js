@@ -1,64 +1,63 @@
 // @flow
-import React, { useCallback, useState, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { View, Text, ImageBackground, Image, TouchableOpacity, FlatList } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
+import { useQuery } from 'react-query'
+import API from '../../../Services/Api';
 
 import ToDo from '../Components/ToDo'
 import TogglableText from '../Components/TogglableText'
-
-import { actions as ToDosUIActions } from '../Redux/Ui'
-import ToDoEntitySelectors from '../Selectors/Entity'
-import ToDoUISelections from '../Selectors/Ui'
 
 import styles from './ToDoScreen.style'
 import { Images } from '../../../Themes'
 
 import type { StackNavigationProp } from '@react-navigation/stack'
 
+import { ToDoContext } from '../Context/TodoContext';
+import MomentConfig from '../../../Config/MomentConfig'
 import moment from 'moment'
 
 type Props = {
   navigation: StackNavigationProp
 }
 
+const api = API.create()
+
+MomentConfig.setLanguage();
+
 const ToDoScreen = ({ navigation }: Props) => {
-  // Redux Actions
-  const dispatch = useDispatch()
-  const getToDos = useCallback(() => dispatch(ToDosUIActions.request()))
+  const context = useContext(ToDoContext)
 
-  // State
-  const [selectedFilterIndex, setFilterIndex] = useState(0)
+  const getToDos = () =>
+    api.getToDos().then(response => {
+      return response.data
+    })
 
-  // Selectors
-  const sortedToDos = useSelector(ToDoEntitySelectors.sortedToDos)
-  const fetching = useSelector(ToDoUISelections.fetching)
-  const error = useSelector(ToDoUISelections.error)
+  const { data, refetch, isLoading, isFetching, isError } = useQuery('fetchToDo', getToDos);
 
-  // Lifecycle Methods
-  useEffect(() => {
-    getToDos()
-  }, [])
-
-  // Consts
-  const filterList = ['All', 'Today', 'This week', 'This month']
+  const renderItem = ({ item }) => (
+    <ToDo onPressText={() => {}} toggleToDo={() => {}} text={item.title} toggled={item.isDone} />
+  )
+  const keyExtractor = item => `${item.id}`
+  const refresh = () => refetch();
 
   return (
     <ImageBackground source={Images.appBackground} style={styles.background}>
       <HeaderContainer onPressSearch={() => {}} />
       <View style={styles.tasksContainer}>
         <FilterListContainer
-          filterList={filterList}
-          selectedFilter={selectedFilterIndex}
-          onPressFilter={setFilterIndex}
+          filterList={context.filterList}
+          selectedFilter={context.selectedFilterIndex}
+          onPressFilter={context.setFilterIndex}
         />
-        {!fetching && !error && !!sortedToDos && (
+
+        {!isLoading && !isError && (
           <FlatList
+            onRefresh={refresh}
+            refreshing={!isLoading && isFetching}
             style={{ marginLeft: 12 }}
-            data={sortedToDos}
-            keyExtractor={(item, index) => `${item.id}-${index}-${item.title}`}
-            renderItem={({ item }) => (
-              <ToDo onPressText={() => {}} toggleToDo={() => {}} text={item.title} toggled={item.isDone} />
-            )}
+            data={() => {}}
+            keyExtractor={keyExtractor}
+            renderItem={renderItem}
           />
         )}
       </View>
@@ -92,7 +91,7 @@ const FilterListContainer = ({ filterList, selectedFilter, onPressFilter }) => (
 const HeaderContainer = ({ onPressSearch }) => (
   <View style={styles.headerContainer}>
     <View>
-      <Text style={styles.displayDateName}>Today</Text>
+      <Text style={styles.displayDateName}>Hoje</Text>
       <Text style={styles.date}>{moment().format('dddd, DD MMMM')}</Text>
     </View>
     <TouchableOpacity activeOpacity={0.7} onPress={onPressSearch} style={styles.searchContainer}>

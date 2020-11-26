@@ -28,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/PopcodeMobile/desafio-react-native/issues"
   },
-  "homepage": "https://github.com/PopcodeMobile/desafio-react-native#readme"
+  "homepage": "https://github.com/PopcodeMobile/desafio-react-native#readme",
+  "dependencies": {
+    "react-query": "^2.26.3"
+  }
 }

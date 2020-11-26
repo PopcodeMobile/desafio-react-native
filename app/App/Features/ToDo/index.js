@@ -1,5 +1,6 @@
 // @flow
-import ToDoScreen from './Containers/ToDoScreen'
+// import ToDoScreen from './Containers/ToDoScreen'
+import ContextProvider from './ContextProvider'
 import type { Feature } from '../../Entities/Feature'
 
 import toDosEntityReducer from './Redux/Entity'
@@ -12,7 +13,7 @@ import toDosSagas from './Sagas'
 
 const feature: Feature = {
   screens: {
-    ToDoScreen
+    ContextProvider
   },
   sagas: toDosSagas,
   reducers: {
