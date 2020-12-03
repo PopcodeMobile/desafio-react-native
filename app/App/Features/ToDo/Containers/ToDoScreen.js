@@ -2,7 +2,7 @@
 import React, { useContext } from 'react'
 import { View, Text, ImageBackground, Image, TouchableOpacity, FlatList } from 'react-native'
 import { useQuery } from 'react-query'
-import API from '../../../Services/Api';
+import API from '../../../Services/Api'
 
 import ToDo from '../Components/ToDo'
 import TogglableText from '../Components/TogglableText'
@@ -12,7 +12,7 @@ import { Images } from '../../../Themes'
 
 import type { StackNavigationProp } from '@react-navigation/stack'
 
-import { ToDoContext } from '../Context/TodoContext';
+import { ToDoContext } from '../Context/TodoContext'
 import MomentConfig from '../../../Config/MomentConfig'
 import moment from 'moment'
 
@@ -22,7 +22,7 @@ type Props = {
 
 const api = API.create()
 
-MomentConfig.setLanguage();
+MomentConfig.setLanguage()
 
 const ToDoScreen = ({ navigation }: Props) => {
   const context = useContext(ToDoContext)
@@ -32,13 +32,13 @@ const ToDoScreen = ({ navigation }: Props) => {
       return response.data
     })
 
-  const { data, refetch, isLoading, isFetching, isError } = useQuery('fetchToDo', getToDos);
+  const { data, refetch, isLoading, isFetching, isError } = useQuery('fetchToDo', getToDos)
 
   const renderItem = ({ item }) => (
     <ToDo onPressText={() => {}} toggleToDo={() => {}} text={item.title} toggled={item.isDone} />
   )
   const keyExtractor = item => `${item.id}`
-  const refresh = () => refetch();
+  const refresh = () => refetch()
 
   return (
     <ImageBackground source={Images.appBackground} style={styles.background}>
@@ -47,7 +47,7 @@ const ToDoScreen = ({ navigation }: Props) => {
         <FilterListContainer
           filterList={context.filterList}
           selectedFilter={context.selectedFilterIndex}
-          onPressFilter={context.setFilterIndex}
+          handlePressFilter={context.setFilterIndex}
         />
 
         {!isLoading && !isError && (
@@ -55,7 +55,7 @@ const ToDoScreen = ({ navigation }: Props) => {
             onRefresh={refresh}
             refreshing={!isLoading && isFetching}
             style={{ marginLeft: 12 }}
-            data={() => {}}
+            data={data}
             keyExtractor={keyExtractor}
             renderItem={renderItem}
           />
@@ -72,7 +72,7 @@ const FloatingButton = ({ onPress }) => (
   </TouchableOpacity>
 )
 
-const FilterListContainer = ({ filterList, selectedFilter, onPressFilter }) => (
+const FilterListContainer = ({ filterList, selectedFilter, handlePressFilter }) => (
   <View style={styles.filterContainer}>
     <FlatList
       bounces={false}
@@ -82,7 +82,7 @@ const FilterListContainer = ({ filterList, selectedFilter, onPressFilter }) => (
       data={filterList}
       keyExtractor={(item, index) => `${index}-${item}`}
       renderItem={({ item, index }) => (
-        <TogglableText toggled={selectedFilter === index} text={item} onPressText={() => onPressFilter(index)} />
+        <TogglableText toggled={selectedFilter === index} text={item} onPressText={() => handlePressFilter(index)} />
       )}
     />
   </View>

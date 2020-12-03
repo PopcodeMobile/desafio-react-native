@@ -5,7 +5,7 @@ import ToDoFeature from '../Features/ToDo'
 
 const Stack = createStackNavigator()
 
-function AppNavigation() {
+function AppNavigation () {
   return (
     <Stack.Navigator initialRouteName='ToDo' headerMode='none'>
       <Stack.Screen name='ToDo' component={ToDoFeature.screens.ContextProvider} />
